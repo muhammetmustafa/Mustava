@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{839A180B-C569-4221-9E40-5AA9B8447B67}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mustava</RootNamespace>
+    <AssemblyName>Mustava</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ado\AdoTypeMap.cs" />
+    <Compile Include="Attributes\SqlParserMultipleColumnAttribute.cs" />
+    <Compile Include="Attributes\SqlParserNvarcharLengthAttribute.cs" />
+    <Compile Include="Attributes\SqlProcOutputAttribute.cs" />
+    <Compile Include="Attributes\SymbolAttribute.cs" />
+    <Compile Include="Extensions\AttributeExtensions.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\ControlsExtensions.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\ListBoxExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\PrimitivesExtensions.cs" />
+    <Compile Include="Ado\SqlExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helper\ChangeAwareList.cs" />
+    <Compile Include="Helper\DateTimeUtils.cs" />
+    <Compile Include="Helper\Email\EmailHelper.cs" />
+    <Compile Include="Helper\Email\EmailModel.cs" />
+    <Compile Include="Helper\Email\SmtpInfoDto.cs" />
+    <Compile Include="Helper\GeneralUtils.cs" />
+    <Compile Include="Helper\LogHelper.cs" />
+    <Compile Include="Helper\PredicateBuilder.cs" />
+    <Compile Include="Helper\Randomizer.cs" />
+    <Compile Include="Helper\ReflectionUtils.cs" />
+    <Compile Include="Helper\SetList.cs" />
+    <Compile Include="Ado\SqlHelper.cs" />
+    <Compile Include="Helper\XMLUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\Base\Rule.cs" />
+    <Compile Include="Validation\Base\SingleControlRule.cs" />
+    <Compile Include="Validation\Base\TwoControlRule.cs" />
+    <Compile Include="Validation\Converters\Converter.cs" />
+    <Compile Include="Validation\Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Validation\Converters\ObjectToIntConverter.cs" />
+    <Compile Include="Validation\Converters\StringToDateTimeConverter.cs" />
+    <Compile Include="Validation\RuleSelector.cs" />
+    <Compile Include="Validation\Rules\CompareRule.cs" />
+    <Compile Include="Validation\Rules\NonNullOrEmptyRule.cs" />
+    <Compile Include="Validation\Rules\SqlRule.cs" />
+    <Compile Include="Validation\Rules\StartEndRule.cs" />
+    <Compile Include="Validation\Utils\ControlInfo.cs" />
+    <Compile Include="Validation\ValidationItems\BaseValidationItem.cs" />
+    <Compile Include="Validation\ValidationItems\DateValidationItem.cs" />
+    <Compile Include="Validation\ValidationItems\ValidationItem.cs" />
+    <Compile Include="Validation\Validators\BaseValidator.cs" />
+    <Compile Include="Validation\Validators\Validator.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
