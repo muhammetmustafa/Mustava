@@ -135,13 +135,6 @@ namespace Mustava.Ado
 
                 return true;
             }
-            catch (CustomException exception)
-            {
-                LogHelper.Log("Exception: " + exception.Message);
-                LogHelper.Log(exception.GetAllInnerExceptions().Select(exc => exc.Message).Concatenate("\n") + "\n" + exception.StackTrace);
-
-                throw;
-            }
             catch (Exception exception)
             {
                 if (!DontShowExceptions && Environment.UserInteractive)
@@ -275,10 +268,6 @@ namespace Mustava.Ado
                 new SqlDataAdapter(cmd).Fill(dsh);
 
                 return dsh.Tables.Count <= 0 ? null : dsh.Tables[0];
-            }
-            catch (CustomException)
-            {
-                throw;
             }
             catch (Exception exception)
             {

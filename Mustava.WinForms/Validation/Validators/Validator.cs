@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Mustava.Extensions;
-using Mustava.Validation.Base;
-using Mustava.Validation.Utils;
-using Mustava.Validation.ValidationItems;
+using Mustava.WinForms.Validation.Base;
+using Mustava.WinForms.Validation.Utils;
+using Mustava.WinForms.Validation.ValidationItems;
 
-namespace Mustava.Validation.Validators
+namespace Mustava.WinForms.Validation.Validators
 {
     public class Validator
     {

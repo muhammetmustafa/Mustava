@@ -1,6 +1,8 @@
-﻿using Mustava.Validation.Converters;
+﻿using System.Windows.Forms;
+using Mustava.Helper;
+using Mustava.WinForms.Validation.Converters;
 
-namespace Mustava.Validation.Utils
+namespace Mustava.WinForms.Validation.Utils
 {
     public class ControlInfo
     {

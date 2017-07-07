@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mustava.Validation.Converters
+namespace Mustava.WinForms.Validation.Converters
 {
     public class DateTimeToStringConverter : Converter
     {

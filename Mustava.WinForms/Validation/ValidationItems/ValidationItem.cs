@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Mustava.Validation.Base;
-using Mustava.Validation.Utils;
+using Mustava.WinForms.Validation.Base;
+using Mustava.WinForms.Validation.Utils;
 
-namespace Mustava.Validation.ValidationItems
+namespace Mustava.WinForms.Validation.ValidationItems
 {
     public class ValidationItem : BaseValidationItem
     {

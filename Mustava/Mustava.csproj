@@ -47,10 +47,8 @@
     <Compile Include="Attributes\SymbolAttribute.cs" />
     <Compile Include="Extensions\AttributeExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
-    <Compile Include="Extensions\ControlsExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
-    <Compile Include="Extensions\ListBoxExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\PrimitivesExtensions.cs" />
     <Compile Include="Ado\SqlExtensions.cs" />
@@ -69,24 +67,6 @@
     <Compile Include="Ado\SqlHelper.cs" />
     <Compile Include="Helper\XMLUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validation\Base\Rule.cs" />
-    <Compile Include="Validation\Base\SingleControlRule.cs" />
-    <Compile Include="Validation\Base\TwoControlRule.cs" />
-    <Compile Include="Validation\Converters\Converter.cs" />
-    <Compile Include="Validation\Converters\DateTimeToStringConverter.cs" />
-    <Compile Include="Validation\Converters\ObjectToIntConverter.cs" />
-    <Compile Include="Validation\Converters\StringToDateTimeConverter.cs" />
-    <Compile Include="Validation\RuleSelector.cs" />
-    <Compile Include="Validation\Rules\CompareRule.cs" />
-    <Compile Include="Validation\Rules\NonNullOrEmptyRule.cs" />
-    <Compile Include="Validation\Rules\SqlRule.cs" />
-    <Compile Include="Validation\Rules\StartEndRule.cs" />
-    <Compile Include="Validation\Utils\ControlInfo.cs" />
-    <Compile Include="Validation\ValidationItems\BaseValidationItem.cs" />
-    <Compile Include="Validation\ValidationItems\DateValidationItem.cs" />
-    <Compile Include="Validation\ValidationItems\ValidationItem.cs" />
-    <Compile Include="Validation\Validators\BaseValidator.cs" />
-    <Compile Include="Validation\Validators\Validator.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

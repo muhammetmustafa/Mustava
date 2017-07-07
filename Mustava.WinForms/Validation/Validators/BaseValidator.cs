@@ -1,4 +1,4 @@
-﻿namespace Mustava.Validation.Validators
+﻿namespace Mustava.WinForms.Validation.Validators
 {
     public abstract class BaseValidator
     {

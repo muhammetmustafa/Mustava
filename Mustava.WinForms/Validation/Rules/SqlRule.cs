@@ -1,9 +1,9 @@
 ﻿using System.Data.SqlClient;
 using Mustava.Ado;
-using Mustava.Helper;
-using Mustava.Validation.Base;
+using Mustava.Extensions;
+using Mustava.WinForms.Validation.Base;
 
-namespace Mustava.Validation.Rules
+namespace Mustava.WinForms.Validation.Rules
 {
     public class SqlRule : SingleControlRule
     {

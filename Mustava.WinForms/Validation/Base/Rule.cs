@@ -1,4 +1,4 @@
-﻿namespace Mustava.Validation.Base
+﻿namespace Mustava.WinForms.Validation.Base
 {
     public abstract class Rule
     {

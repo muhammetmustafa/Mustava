@@ -1,4 +1,4 @@
-﻿namespace Mustava.Validation.Converters
+﻿namespace Mustava.WinForms.Validation.Converters
 {
     public abstract class Converter
     {

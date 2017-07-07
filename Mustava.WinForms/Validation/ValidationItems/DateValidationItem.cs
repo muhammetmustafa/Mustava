@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mustava.Validation.Base;
-using Mustava.Validation.Utils;
+using System.Windows.Forms;
+using Mustava.Extensions;
+using Mustava.WinForms.Validation.Base;
+using Mustava.WinForms.Validation.Utils;
 
-namespace Mustava.Validation.ValidationItems
+namespace Mustava.WinForms.Validation.ValidationItems
 {
     public class DateValidationItem : BaseValidationItem
     {

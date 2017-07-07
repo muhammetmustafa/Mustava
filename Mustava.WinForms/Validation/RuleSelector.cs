@@ -1,6 +1,6 @@
-﻿using Mustava.Validation.Rules;
+﻿using Mustava.WinForms.Validation.Rules;
 
-namespace Mustava.Validation
+namespace Mustava.WinForms.Validation
 {
     public static class RuleSelector
     {

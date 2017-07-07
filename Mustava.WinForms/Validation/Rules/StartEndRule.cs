@@ -1,8 +1,8 @@
 ﻿using System;
 using Mustava.Extensions;
-using Mustava.Validation.Base;
+using Mustava.WinForms.Validation.Base;
 
-namespace Mustava.Validation.Rules
+namespace Mustava.WinForms.Validation.Rules
 {
     public class StartEndRule : TwoControlRule
     {

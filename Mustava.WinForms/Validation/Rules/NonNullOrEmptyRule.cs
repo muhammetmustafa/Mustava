@@ -1,6 +1,7 @@
-﻿using Mustava.Validation.Base;
+﻿using Mustava.Extensions;
+using Mustava.WinForms.Validation.Base;
 
-namespace Mustava.Validation.Rules
+namespace Mustava.WinForms.Validation.Rules
 {
     public class NonNullOrEmptyRule : SingleControlRule
     {

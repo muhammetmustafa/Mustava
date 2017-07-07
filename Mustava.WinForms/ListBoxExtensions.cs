@@ -1,4 +1,6 @@
-﻿namespace Mustava.Extensions
+﻿using System.Windows.Forms;
+
+namespace Mustava.WinForms
 {
     public static class ListBoxExtensions
     {

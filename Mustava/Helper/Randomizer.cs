@@ -61,9 +61,5 @@ namespace Mustava.Helper
 
             return rng.Next(-seed, seed) > 0;
         }
-        public static Color randomColor()
-        {
-            return Color.FromArgb(randomHour(0, 255), randomHour(0, 255), randomHour(0, 255));
-        }
     }
 }

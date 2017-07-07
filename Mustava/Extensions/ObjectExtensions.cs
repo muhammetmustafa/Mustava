@@ -167,12 +167,5 @@ namespace Mustava.Extensions
 
             return s.ToStringOrEmpty() == string.Empty;
         }
-
-        public static BindingSource AsBindingSource(this object o)
-        {
-            return new BindingSource(o, "");
-        }
-
-
     }
 }
