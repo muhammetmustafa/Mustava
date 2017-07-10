@@ -61,5 +61,18 @@ namespace Mustava.Extensions
 
             return result;
         }
+
+        public static Base64ImageValue GetBase64ImageData(this string content)
+        {
+            var result1 = content.Split(';');
+            var extensions = result1[0].Split('/')[1];
+            var contentResult = result1[1].Replace("base64,", "");
+
+            return new Base64ImageValue()
+            {
+                Value = contentResult,
+                Extensions = extensions
+            };
+        }
     }
 }
