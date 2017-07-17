@@ -128,6 +128,7 @@ namespace Mustava.WinForms
             return andBuilder.Compile();
         }
 
+
         public static FileDialog AskForExcelFile()
         {
             FileDialog fileDialog = new SaveFileDialog();

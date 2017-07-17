@@ -22,11 +22,6 @@ namespace Mustava.Ado
         public string ConnectionString { get; set; }
 
         public bool BatchJob { get; set; }
-        
-        static SqlHelper()
-        {
-            
-        }
 
         public static SqlHelper Get()
         {
