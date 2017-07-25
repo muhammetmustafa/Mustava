@@ -12,18 +12,20 @@ namespace Mustava.Ado
     {
         private SqlConnection _connection;
 
+        public delegate void MessageProducedDelegate(string message, string title);
+        public event MessageProducedDelegate MessageProducedEvent;
+
         public Action BeforeQueryAction { get; set; }
 
         public Action AfterQueryAction { get; set; }
-
-        public delegate void MessageProducedDelegate(string message, string title);
-        public event MessageProducedDelegate MessageProducedEvent;
 
         public string ConnectionString { get; set; }
 
         public bool BatchJob { get; set; }
 
         public bool DontShowExceptions { get; set; }
+
+        public int Timeout { get; set; }
 
         public static SqlHelper Get()
         {
@@ -89,7 +91,6 @@ namespace Mustava.Ado
         /// </summary>
         /// <param name="sqlCommand"></param>
         /// <param name="paramsDto"></param>
-        /// <param name="DontShowExceptions"></param>
         /// <returns></returns>
         public bool ExecuteProc(string sqlCommand, object paramsDto)
         {
@@ -126,7 +127,7 @@ namespace Mustava.Ado
                 OpenConnection();
 
                 cmd.Connection = _connection;
-                cmd.CommandTimeout = 0;
+                cmd.CommandTimeout = Timeout;
 
                 cmd.ExecuteNonQuery();
 
@@ -136,15 +137,15 @@ namespace Mustava.Ado
             {
                 if (!DontShowExceptions && Environment.UserInteractive)
                 {
-                    var title = "SQL HATASI";
-
-                    if (cmd.Connection != null)
-                    {
-                        title = " (" + cmd.Connection.DataSource + "; " + cmd.Connection.Database + ")";
-                    }
-
                     if (MessageProducedEvent != null)
                     {
+                        var title = "SQL HATASI";
+
+                        if (cmd.Connection != null)
+                        {
+                            title = " (" + cmd.Connection.DataSource + "; " + cmd.Connection.Database + ")";
+                        }
+
                         MessageProducedEvent.Invoke(exception.Message, title);
                     }
                 }
@@ -245,7 +246,6 @@ namespace Mustava.Ado
         /// Queries a generic sql command. 
         /// </summary>
         /// <param name="cmd">SqlCommand to query</param>
-        /// <param name="DontShowExceptions"></param>
         /// <returns>DataTable if successful, null if anything goes wrong</returns>
         public DataTable Query(SqlCommand cmd)
         {
@@ -262,7 +262,7 @@ namespace Mustava.Ado
                 OpenConnection();
 
                 cmd.Connection = _connection;
-                cmd.CommandTimeout = 0;
+                cmd.CommandTimeout = Timeout;
 
                 var dsh = new DataSet();
 
@@ -274,15 +274,15 @@ namespace Mustava.Ado
             {
                 if (!DontShowExceptions && Environment.UserInteractive)
                 {
-                    var title = "SQL HATASI";
-
-                    if (cmd.Connection != null)
-                    {
-                        title =  " (" + cmd.Connection.DataSource + "; " + cmd.Connection.Database + ")";
-                    }
-
                     if (MessageProducedEvent != null)
                     {
+                        var title = "SQL HATASI";
+
+                        if (cmd.Connection != null)
+                        {
+                            title = " (" + cmd.Connection.DataSource + "; " + cmd.Connection.Database + ")";
+                        }
+
                         MessageProducedEvent.Invoke(exception.Message, title);
                     }
                 }

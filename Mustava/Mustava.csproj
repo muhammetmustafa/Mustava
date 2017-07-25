@@ -59,6 +59,7 @@
     <Compile Include="Helper\Email\EmailHelper.cs" />
     <Compile Include="Helper\Email\EmailModel.cs" />
     <Compile Include="Helper\Email\SmtpInfoDto.cs" />
+    <Compile Include="Helper\ExcelHelpers.cs" />
     <Compile Include="Helper\GeneralUtils.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Helper\PredicateBuilder.cs" />
