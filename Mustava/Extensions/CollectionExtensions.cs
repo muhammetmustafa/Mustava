@@ -128,5 +128,55 @@ namespace Mustava.Extensions
         {
             return list == null || list.Count <= 0;
         }
+
+        public static void RecursiveTraveler<T>(this IEnumerable collection, string childrenPropertyName, Action<T> action)
+        {
+            if (collection == null || action == null || childrenPropertyName.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            foreach (var item in collection)
+            {
+                var citem = item is T ? (T) item : default(T);
+                if (citem == null)
+                {
+                    continue;
+                }
+
+                action.Invoke(citem);
+
+                if (item.HasProperty(childrenPropertyName))
+                {
+                    var childCollection = item.GetValueOfProperty(childrenPropertyName) as IEnumerable<T>;
+                    if (childCollection != null)
+                    {
+                        childCollection.RecursiveTraveler(childrenPropertyName, action);
+                    }
+                }
+            }
+        }
+
+        public static void RecursiveTraveler<T>(this IEnumerable<T> collection, string childrenPropertyName, Action<T> action)
+        {
+            if (collection == null || action == null || childrenPropertyName.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            foreach (var item in collection)
+            {
+                action.Invoke(item);
+
+                if (item.HasProperty(childrenPropertyName))
+                {
+                    var childCollection = item.GetValueOfProperty(childrenPropertyName) as IEnumerable<T>;
+                    if (childCollection != null)
+                    {
+                        childCollection.RecursiveTraveler(childrenPropertyName, action);
+                    }
+                }
+            }
+        }
     }
 }

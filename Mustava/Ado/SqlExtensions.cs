@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Mustava.Attributes;
+using Mustava.Extensions;
 
 namespace Mustava.Ado
 {
@@ -108,6 +110,11 @@ namespace Mustava.Ado
         public static bool HasRows(this DataTable dataTable)
         {
             return dataTable != null && dataTable.Rows.Count > 0;
+        }
+
+        public static string ToInString(this object[] objects)
+        {
+            return objects.Select(i => string.Format("'{0}'", i)).Concatenate(",");
         }
     }
 }

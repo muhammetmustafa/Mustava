@@ -54,7 +54,9 @@
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.gObjects1 = new DevExpress.XtraGrid.GridControl();
             this.gVObjects1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcName1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pnlObjectTypes = new DevExpress.XtraEditors.PanelControl();
+            this.hlcRefresh1 = new DevExpress.XtraEditors.HyperlinkLabelControl();
             this.ceShowFunctions = new DevExpress.XtraEditors.CheckEdit();
             this.ceShowProcedures = new DevExpress.XtraEditors.CheckEdit();
             this.ceShowTables = new DevExpress.XtraEditors.CheckEdit();
@@ -62,14 +64,14 @@
             this.bwWorker = new System.ComponentModel.BackgroundWorker();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gObjects2 = new DevExpress.XtraGrid.GridControl();
+            this.gVObjects2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcName2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
-            this.hlcRefresh1 = new DevExpress.XtraEditors.HyperlinkLabelControl();
             this.hlcRefresh2 = new DevExpress.XtraEditors.HyperlinkLabelControl();
+            this.ceShowFunctions2 = new DevExpress.XtraEditors.CheckEdit();
+            this.ceShowProcedures2 = new DevExpress.XtraEditors.CheckEdit();
+            this.ceShowTables2 = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.grpDb1)).BeginInit();
             this.grpDb1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbeSchema1.Properties)).BeginInit();
@@ -98,13 +100,13 @@
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
             this.groupControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gObjects2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gVObjects2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceShowFunctions2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceShowProcedures2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceShowTables2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // grpDb1
@@ -142,6 +144,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbeSchema1.Size = new System.Drawing.Size(191, 20);
             this.cbeSchema1.TabIndex = 8;
+            this.cbeSchema1.EditValueChanged += new System.EventHandler(this.cbeSchema1_EditValueChanged);
             // 
             // txtPassword1
             // 
@@ -165,6 +168,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbeServer1.Size = new System.Drawing.Size(191, 20);
             this.cbeServer1.TabIndex = 4;
+            this.cbeServer1.SelectedIndexChanged += new System.EventHandler(this.cbeServer1_SelectedIndexChanged);
             // 
             // labelControl4
             // 
@@ -233,6 +237,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbeSchema2.Size = new System.Drawing.Size(191, 20);
             this.cbeSchema2.TabIndex = 8;
+            this.cbeSchema2.SelectedIndexChanged += new System.EventHandler(this.cbeSchema2_SelectedIndexChanged);
             // 
             // txtPassword2
             // 
@@ -256,6 +261,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbeServer2.Size = new System.Drawing.Size(191, 20);
             this.cbeServer2.TabIndex = 4;
+            this.cbeServer2.SelectedIndexChanged += new System.EventHandler(this.cbeServer2_SelectedIndexChanged);
             // 
             // labelControl5
             // 
@@ -339,6 +345,8 @@
             // 
             // gVObjects1
             // 
+            this.gVObjects1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gcName1});
             this.gVObjects1.GridControl = this.gObjects1;
             this.gVObjects1.Name = "gVObjects1";
             this.gVObjects1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -349,6 +357,15 @@
             this.gVObjects1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gVObjects1.OptionsView.ColumnAutoWidth = false;
             this.gVObjects1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gcName1
+            // 
+            this.gcName1.Caption = "Name";
+            this.gcName1.FieldName = "Name";
+            this.gcName1.Name = "gcName1";
+            this.gcName1.Visible = true;
+            this.gcName1.VisibleIndex = 1;
+            this.gcName1.Width = 201;
             // 
             // pnlObjectTypes
             // 
@@ -362,6 +379,16 @@
             this.pnlObjectTypes.Size = new System.Drawing.Size(264, 45);
             this.pnlObjectTypes.TabIndex = 0;
             // 
+            // hlcRefresh1
+            // 
+            this.hlcRefresh1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.hlcRefresh1.Location = new System.Drawing.Point(215, 6);
+            this.hlcRefresh1.Name = "hlcRefresh1";
+            this.hlcRefresh1.Size = new System.Drawing.Size(38, 13);
+            this.hlcRefresh1.TabIndex = 10;
+            this.hlcRefresh1.Text = "Refresh";
+            this.hlcRefresh1.Click += new System.EventHandler(this.hlcRefresh1_Click);
+            // 
             // ceShowFunctions
             // 
             this.ceShowFunctions.Location = new System.Drawing.Point(86, 5);
@@ -369,6 +396,7 @@
             this.ceShowFunctions.Properties.Caption = "Functions";
             this.ceShowFunctions.Size = new System.Drawing.Size(75, 19);
             this.ceShowFunctions.TabIndex = 2;
+            this.ceShowFunctions.Tag = "FN";
             // 
             // ceShowProcedures
             // 
@@ -377,6 +405,7 @@
             this.ceShowProcedures.Properties.Caption = "Procedures";
             this.ceShowProcedures.Size = new System.Drawing.Size(75, 19);
             this.ceShowProcedures.TabIndex = 1;
+            this.ceShowProcedures.Tag = "P";
             // 
             // ceShowTables
             // 
@@ -386,6 +415,7 @@
             this.ceShowTables.Properties.Caption = "Tables";
             this.ceShowTables.Size = new System.Drawing.Size(75, 19);
             this.ceShowTables.TabIndex = 0;
+            this.ceShowTables.Tag = "U";
             // 
             // pbcProgress
             // 
@@ -414,83 +444,59 @@
             // 
             // groupControl5
             // 
-            this.groupControl5.Controls.Add(this.gridControl1);
+            this.groupControl5.Controls.Add(this.gObjects2);
             this.groupControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl5.Location = new System.Drawing.Point(2, 65);
             this.groupControl5.Name = "groupControl5";
             this.groupControl5.Size = new System.Drawing.Size(264, 364);
             this.groupControl5.TabIndex = 1;
             // 
-            // gridControl1
+            // gObjects2
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(2, 20);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(260, 342);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gObjects2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gObjects2.Location = new System.Drawing.Point(2, 20);
+            this.gObjects2.MainView = this.gVObjects2;
+            this.gObjects2.Name = "gObjects2";
+            this.gObjects2.Size = new System.Drawing.Size(260, 342);
+            this.gObjects2.TabIndex = 0;
+            this.gObjects2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gVObjects2});
             // 
-            // gridView1
+            // gVObjects2
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
-            this.gridView1.OptionsView.ColumnAutoWidth = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gVObjects2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gcName2});
+            this.gVObjects2.GridControl = this.gObjects2;
+            this.gVObjects2.Name = "gVObjects2";
+            this.gVObjects2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gVObjects2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gVObjects2.OptionsBehavior.Editable = false;
+            this.gVObjects2.OptionsSelection.CheckBoxSelectorColumnWidth = 25;
+            this.gVObjects2.OptionsSelection.MultiSelect = true;
+            this.gVObjects2.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gVObjects2.OptionsView.ColumnAutoWidth = false;
+            this.gVObjects2.OptionsView.ShowGroupPanel = false;
+            // 
+            // gcName2
+            // 
+            this.gcName2.Caption = "Name";
+            this.gcName2.FieldName = "Name";
+            this.gcName2.Name = "gcName2";
+            this.gcName2.Visible = true;
+            this.gcName2.VisibleIndex = 1;
+            this.gcName2.Width = 185;
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.hlcRefresh2);
-            this.panelControl1.Controls.Add(this.checkEdit1);
-            this.panelControl1.Controls.Add(this.checkEdit2);
-            this.panelControl1.Controls.Add(this.checkEdit3);
+            this.panelControl1.Controls.Add(this.ceShowFunctions2);
+            this.panelControl1.Controls.Add(this.ceShowProcedures2);
+            this.panelControl1.Controls.Add(this.ceShowTables2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(2, 20);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(264, 45);
             this.panelControl1.TabIndex = 0;
-            // 
-            // checkEdit1
-            // 
-            this.checkEdit1.Location = new System.Drawing.Point(86, 5);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "Functions";
-            this.checkEdit1.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit1.TabIndex = 2;
-            // 
-            // checkEdit2
-            // 
-            this.checkEdit2.Location = new System.Drawing.Point(5, 23);
-            this.checkEdit2.Name = "checkEdit2";
-            this.checkEdit2.Properties.Caption = "Procedures";
-            this.checkEdit2.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit2.TabIndex = 1;
-            // 
-            // checkEdit3
-            // 
-            this.checkEdit3.EditValue = true;
-            this.checkEdit3.Location = new System.Drawing.Point(5, 5);
-            this.checkEdit3.Name = "checkEdit3";
-            this.checkEdit3.Properties.Caption = "Tables";
-            this.checkEdit3.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit3.TabIndex = 0;
-            // 
-            // hlcRefresh1
-            // 
-            this.hlcRefresh1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.hlcRefresh1.Location = new System.Drawing.Point(215, 6);
-            this.hlcRefresh1.Name = "hlcRefresh1";
-            this.hlcRefresh1.Size = new System.Drawing.Size(38, 13);
-            this.hlcRefresh1.TabIndex = 10;
-            this.hlcRefresh1.Text = "Refresh";
-            this.hlcRefresh1.Click += new System.EventHandler(this.hlcRefresh1_Click);
             // 
             // hlcRefresh2
             // 
@@ -500,6 +506,35 @@
             this.hlcRefresh2.Size = new System.Drawing.Size(38, 13);
             this.hlcRefresh2.TabIndex = 11;
             this.hlcRefresh2.Text = "Refresh";
+            this.hlcRefresh2.Click += new System.EventHandler(this.hlcRefresh2_Click);
+            // 
+            // ceShowFunctions2
+            // 
+            this.ceShowFunctions2.Location = new System.Drawing.Point(86, 5);
+            this.ceShowFunctions2.Name = "ceShowFunctions2";
+            this.ceShowFunctions2.Properties.Caption = "Functions";
+            this.ceShowFunctions2.Size = new System.Drawing.Size(75, 19);
+            this.ceShowFunctions2.TabIndex = 2;
+            this.ceShowFunctions2.Tag = "FN";
+            // 
+            // ceShowProcedures2
+            // 
+            this.ceShowProcedures2.Location = new System.Drawing.Point(5, 23);
+            this.ceShowProcedures2.Name = "ceShowProcedures2";
+            this.ceShowProcedures2.Properties.Caption = "Procedures";
+            this.ceShowProcedures2.Size = new System.Drawing.Size(75, 19);
+            this.ceShowProcedures2.TabIndex = 1;
+            this.ceShowProcedures2.Tag = "P";
+            // 
+            // ceShowTables2
+            // 
+            this.ceShowTables2.EditValue = true;
+            this.ceShowTables2.Location = new System.Drawing.Point(5, 5);
+            this.ceShowTables2.Name = "ceShowTables2";
+            this.ceShowTables2.Properties.Caption = "Tables";
+            this.ceShowTables2.Size = new System.Drawing.Size(75, 19);
+            this.ceShowTables2.TabIndex = 0;
+            this.ceShowTables2.Tag = "U";
             // 
             // DbSyncForm
             // 
@@ -548,14 +583,14 @@
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gObjects2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gVObjects2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceShowFunctions2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceShowProcedures2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceShowTables2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -596,14 +631,16 @@
         private System.ComponentModel.BackgroundWorker bwWorker;
         private DevExpress.XtraEditors.GroupControl groupControl4;
         private DevExpress.XtraEditors.GroupControl groupControl5;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gObjects2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gVObjects2;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit2;
-        private DevExpress.XtraEditors.CheckEdit checkEdit3;
+        private DevExpress.XtraEditors.CheckEdit ceShowFunctions2;
+        private DevExpress.XtraEditors.CheckEdit ceShowProcedures2;
+        private DevExpress.XtraEditors.CheckEdit ceShowTables2;
         private DevExpress.XtraEditors.HyperlinkLabelControl hlcRefresh1;
         private DevExpress.XtraEditors.HyperlinkLabelControl hlcRefresh2;
+        private DevExpress.XtraGrid.Columns.GridColumn gcName1;
+        private DevExpress.XtraGrid.Columns.GridColumn gcName2;
     }
 }
 

@@ -23,6 +23,8 @@ namespace Mustava.Ado
 
         public bool BatchJob { get; set; }
 
+        public bool DontShowExceptions { get; set; }
+
         public static SqlHelper Get()
         {
             return new SqlHelper();
@@ -89,12 +91,12 @@ namespace Mustava.Ado
         /// <param name="paramsDto"></param>
         /// <param name="DontShowExceptions"></param>
         /// <returns></returns>
-        public bool ExecuteProc(string sqlCommand, object paramsDto, bool DontShowExceptions = false)
+        public bool ExecuteProc(string sqlCommand, object paramsDto)
         {
             var cmd = new SqlCommand(sqlCommand);
             cmd.GenerateSqlParameters(paramsDto);
 
-            var dataTable = ExecuteProc(cmd, DontShowExceptions);
+            var dataTable = ExecuteProc(cmd);
 
             //parametre dto'suna sorgudan gelen output parametrelerini ata.
             AssignSqlOutputParams(cmd, paramsDto);
@@ -102,14 +104,14 @@ namespace Mustava.Ado
             return dataTable;
         }
 
-        public bool Execute(string sqlCommand, bool DontShowExceptions = false)
+        public bool Execute(string sqlCommand)
         {
             var cmd = new SqlCommand(sqlCommand);
 
-            return Execute(cmd, DontShowExceptions);
+            return Execute(cmd);
         }
 
-        public bool Execute(SqlCommand cmd, bool DontShowExceptions = false)
+        public bool Execute(SqlCommand cmd)
         {
             try
             {
@@ -166,11 +168,11 @@ namespace Mustava.Ado
             }
         }
 
-        public bool ExecuteProc(string sqlCommand, bool DontShowExceptions = false)
+        public bool ExecuteProc(string sqlCommand)
         {
             var cmd = new SqlCommand(sqlCommand);
 
-            return ExecuteProc(cmd, DontShowExceptions);
+            return ExecuteProc(cmd);
         }
 
         /// <summary>
@@ -178,12 +180,11 @@ namespace Mustava.Ado
         /// Throws CustomException if an error occurs.
         /// </summary>
         /// <param name="cmd"></param>
-        /// <param name="DontShowExceptions"></param>
-        public bool ExecuteProc(SqlCommand cmd, bool DontShowExceptions = false)
+        public bool ExecuteProc(SqlCommand cmd)
         {
             cmd.CommandType = CommandType.StoredProcedure;
 
-            return Execute(cmd, DontShowExceptions);
+            return Execute(cmd);
         }
 
         /// <summary>
@@ -193,14 +194,13 @@ namespace Mustava.Ado
         /// </summary>
         /// <param name="sqlCommand"></param>
         /// <param name="paramsDto"></param>
-        /// <param name="DontShowExceptions"></param>
         /// <returns></returns>
-        public DataTable QueryProc(string sqlCommand, object paramsDto, bool DontShowExceptions = false)
+        public DataTable QueryProc(string sqlCommand, object paramsDto)
         {
             var cmd = new SqlCommand(sqlCommand);
             cmd.GenerateSqlParameters(paramsDto);
 
-            var dataTable = QueryProc(cmd, DontShowExceptions);
+            var dataTable = QueryProc(cmd);
 
             //parametre dto'suna sorgudan gelen output parametrelerini ata.
             AssignSqlOutputParams(cmd, paramsDto);
@@ -208,31 +208,37 @@ namespace Mustava.Ado
             return dataTable;
         }
 
-        public DataTable QueryProc(string sqlCommand, bool DontShowExceptions = false)
+        public DataTable QueryProc(string sqlCommand)
         {
             var cmd = new SqlCommand(sqlCommand);
 
-            return QueryProc(cmd, DontShowExceptions);
+            return QueryProc(cmd);
         }
 
         /// <summary>
         /// Queries a procedural sql command. 
         /// </summary>
         /// <param name="cmd">SqlCommand to query</param>
-        /// <param name="DontShowExceptions"></param>
         /// <returns>DataTable if successful, null if anything goes wrong</returns>
-        public DataTable QueryProc(SqlCommand cmd, bool DontShowExceptions = false)
+        public DataTable QueryProc(SqlCommand cmd)
         {
             cmd.CommandType = CommandType.StoredProcedure;
 
-            return Query(cmd, DontShowExceptions);
+            return Query(cmd);
         }
 
-        public DataTable Query(string sqlCommand, bool DontShowExceptions = false)
+        public DataTable Query(string sqlCommand, params object[] parameters)
+        {
+            var cmd = new SqlCommand(string.Format(sqlCommand, parameters));
+
+            return Query(cmd);
+        }
+
+        public DataTable Query(string sqlCommand)
         {
             var cmd = new SqlCommand(sqlCommand);
 
-            return Query(cmd, DontShowExceptions);
+            return Query(cmd);
         }
 
         /// <summary>
@@ -241,7 +247,7 @@ namespace Mustava.Ado
         /// <param name="cmd">SqlCommand to query</param>
         /// <param name="DontShowExceptions"></param>
         /// <returns>DataTable if successful, null if anything goes wrong</returns>
-        public DataTable Query(SqlCommand cmd, bool DontShowExceptions = false)
+        public DataTable Query(SqlCommand cmd)
         {
             try
             {

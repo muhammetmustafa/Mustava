@@ -75,7 +75,7 @@ namespace Mustava.Helper
             if (row == null)
                 return default(T);
 
-            if (row.ItemArray.Length == 1)
+            if (row.ItemArray.Length == 1 && AdoTypeMap.IsItAppropriateForSingleColumn(typeof(T)))
             {
                 return (T)row[0];
             }
