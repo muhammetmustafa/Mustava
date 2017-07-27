@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,10 +47,13 @@
     <Compile Include="Attributes\SqlParserNvarcharLengthAttribute.cs" />
     <Compile Include="Attributes\SqlProcOutputAttribute.cs" />
     <Compile Include="Attributes\SymbolAttribute.cs" />
+    <Compile Include="DataStructures\BaseEditableObject.cs" />
     <Compile Include="Extensions\AttributeExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\GeometricExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\PrimitivesExtensions.cs" />
     <Compile Include="Ado\SqlExtensions.cs" />

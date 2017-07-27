@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using Mustava.Attributes;
 using Mustava.Extensions;
@@ -26,6 +27,8 @@ namespace Mustava.Ado
         public bool DontShowExceptions { get; set; }
 
         public int Timeout { get; set; }
+
+        public bool ShowSql { get; set; }
 
         public static SqlHelper Get()
         {
@@ -105,6 +108,48 @@ namespace Mustava.Ado
             return dataTable;
         }
 
+        /// <summary>
+        /// Executes a parameterless procedure command. It's parameters must be supplied beforehand.
+        /// </summary>
+        /// <param name="sqlCommand">Procedure name to execute</param>
+        /// <returns>True if successfull, false otherwise.</returns>
+        public bool ExecuteProc(string sqlCommand)
+        {
+            var cmd = new SqlCommand(sqlCommand);
+
+            return ExecuteProc(cmd);
+        }
+
+        /// <summary>
+        /// Executes a procedure command. It's parameters must be supplied beforehand.
+        /// </summary>
+        /// <param name="cmd">SqlCommand object to execute.</param>
+        /// <returns>True if successfull, false otherwise.</returns>
+        public bool ExecuteProc(SqlCommand cmd)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            return Execute(cmd);
+        }
+
+        /// <summary>
+        /// Formats the sql with the parameters provided and executes the sql.
+        /// </summary>
+        /// <param name="sqlCommand">Parameterized sql string appropriate for string.Format() method.</param>
+        /// <param name="parameters">Parameter list to be supplied to string.Format() method. Must match the first argument.</param>
+        /// <returns>True if successful, false otherwise.</returns>
+        public bool ExecuteF(string sqlCommand, params object[] parameters)
+        {
+            var cmd = new SqlCommand(string.Format(sqlCommand, parameters));
+
+            return Execute(cmd);
+        }
+
+        /// <summary>
+        /// Executes a sql text.
+        /// </summary>
+        /// <param name="sqlCommand">Sql text to execute.</param>
+        /// <returns>True if successful, false otherwise.</returns>
         public bool Execute(string sqlCommand)
         {
             var cmd = new SqlCommand(sqlCommand);
@@ -112,6 +157,11 @@ namespace Mustava.Ado
             return Execute(cmd);
         }
 
+        /// <summary>
+        /// Executes a SqlCommand object.
+        /// </summary>
+        /// <param name="cmd">SqlCommand object to execute.</param>
+        /// <returns>True if successful, false otherwise.</returns>
         public bool Execute(SqlCommand cmd)
         {
             try
@@ -128,6 +178,11 @@ namespace Mustava.Ado
 
                 cmd.Connection = _connection;
                 cmd.CommandTimeout = Timeout;
+
+                if (ShowSql)
+                {
+                    Debug.WriteLine(cmd.CommandText);
+                }
 
                 cmd.ExecuteNonQuery();
 
@@ -169,33 +224,15 @@ namespace Mustava.Ado
             }
         }
 
-        public bool ExecuteProc(string sqlCommand)
-        {
-            var cmd = new SqlCommand(sqlCommand);
-
-            return ExecuteProc(cmd);
-        }
-
         /// <summary>
-        /// Execute a procedural sql command.
-        /// Throws CustomException if an error occurs.
+        /// Executes a procedure with parameters inferred from another object.
+        /// First a sql command is initialized. And its parameters are inferred from second argument. 
+        /// That's why parameter names and types of the procedure and property names and types of the 
+        /// object must match.
         /// </summary>
-        /// <param name="cmd"></param>
-        public bool ExecuteProc(SqlCommand cmd)
-        {
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            return Execute(cmd);
-        }
-
-        /// <summary>
-        /// Verilen Sql komutuna paramsDto parametresindeki değerlerlerden parametre oluşturarak çalıştırır
-        /// ve sonucunu döndürür. Ayrıca eğer parametre dto'sunda herhangi bir parametre output olarak işaretlenmişse
-        /// komut çalıştırıldıktan sonra da output değerleri parametre dto'sunda eşleşen değerlere atanır.
-        /// </summary>
-        /// <param name="sqlCommand"></param>
-        /// <param name="paramsDto"></param>
-        /// <returns></returns>
+        /// <param name="sqlCommand">Procedure to be executed.</param>
+        /// <param name="paramsDto">Object which prodecure parameters and values are inferred from.</param>
+        /// <returns>DataTable if successful, null if anything goes wrong</returns>
         public DataTable QueryProc(string sqlCommand, object paramsDto)
         {
             var cmd = new SqlCommand(sqlCommand);
@@ -209,6 +246,11 @@ namespace Mustava.Ado
             return dataTable;
         }
 
+        /// <summary>
+        /// Executes a procedure without any parameters. So only procedure name is required.
+        /// </summary>
+        /// <param name="sqlCommand">Procedure name to exectue</param>
+        /// <returns>DataTable if successful, null if anything goes wrong</returns>
         public DataTable QueryProc(string sqlCommand)
         {
             var cmd = new SqlCommand(sqlCommand);
@@ -217,9 +259,9 @@ namespace Mustava.Ado
         }
 
         /// <summary>
-        /// Queries a procedural sql command. 
+        /// Executes a procedure SqlCommand object. Assuming parameters provided beforehand.
         /// </summary>
-        /// <param name="cmd">SqlCommand to query</param>
+        /// <param name="cmd">Procedure to execute</param>
         /// <returns>DataTable if successful, null if anything goes wrong</returns>
         public DataTable QueryProc(SqlCommand cmd)
         {
@@ -228,6 +270,12 @@ namespace Mustava.Ado
             return Query(cmd);
         }
 
+        /// <summary>
+        /// Formats the sql with the parameters provided and executes the sql.
+        /// </summary>
+        /// <param name="sqlCommand">Parameterized sql string appropriate for string.Format() method.</param>
+        /// <param name="parameters">Parameter list to be supplied to string.Format() method. Must match the first argument.</param>
+        /// <returns>DataTable if successful, null if anything goes wrong</returns>
         public DataTable Query(string sqlCommand, params object[] parameters)
         {
             var cmd = new SqlCommand(string.Format(sqlCommand, parameters));
@@ -235,6 +283,24 @@ namespace Mustava.Ado
             return Query(cmd);
         }
 
+        /// <summary>
+        /// Formats the sql with the parameters provided and executes the sql.
+        /// </summary>
+        /// <param name="sqlCommand">Parameterized sql string appropriate for string.Format() method.</param>
+        /// <param name="parameters">Parameter list to be supplied to string.Format() method. Must match the first argument.</param>
+        /// <returns>DataTable if successful, null if anything goes wrong</returns>
+        public DataTable QueryF(string sqlCommand, params object[] parameters)
+        {
+            var cmd = new SqlCommand(string.Format(sqlCommand, parameters));
+
+            return Query(cmd);
+        }
+
+        /// <summary>
+        /// Simply executes the sql string.
+        /// </summary>
+        /// <param name="sqlCommand"></param>
+        /// <returns>DataTable if successful, null if anything goes wrong</returns>
         public DataTable Query(string sqlCommand)
         {
             var cmd = new SqlCommand(sqlCommand);
@@ -265,6 +331,11 @@ namespace Mustava.Ado
                 cmd.CommandTimeout = Timeout;
 
                 var dsh = new DataSet();
+
+                if (ShowSql)
+                {
+                    Debug.WriteLine(cmd.CommandText);
+                }
 
                 new SqlDataAdapter(cmd).Fill(dsh);
 
