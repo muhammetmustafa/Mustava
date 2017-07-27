@@ -22,7 +22,7 @@ namespace Mustava.Ado
         /// </summary>
         /// <param name="cmd"></param>
         /// <param name="obj"></param>
-        public static void GenerateSqlParameters(this SqlCommand cmd, object obj)
+        public static void GenerateSqlParameters(this IDbCommand cmd, object obj)
         {
             if (cmd == null || obj == null)
                 return;
@@ -53,16 +53,16 @@ namespace Mustava.Ado
                     }
                 }
 
-                cmd.NewInputParameter(parameterName, propertyInfo.GetValue(obj), parameterLength);
+                cmd.NewInputParameter(parameterName, propertyInfo.GetValue(obj, null), parameterLength);
             }
         }
 
-        public static SqlParameter NewInputParameter(this SqlCommand cmd, string parameterName, object value)
+        public static SqlParameter NewInputParameter(this IDbCommand cmd, string parameterName, object value)
         {
             return cmd.NewInputParameter(parameterName, value, null);
         }
 
-        public static SqlParameter NewInputParameter(this SqlCommand cmd, string parameterName, object value, int? size)
+        public static SqlParameter NewInputParameter(this IDbCommand cmd, string parameterName, object value, int? size)
         {
             if (cmd == null || parameterName.Equals(string.Empty))
                 return null;
@@ -72,8 +72,11 @@ namespace Mustava.Ado
 
             if (value == null)
             {
-                return cmd.Parameters.AddWithValue(parameterName, DBNull.Value);
+                var p = new SqlParameter(parameterName, DBNull.Value);
+                cmd.Parameters.Add(p);
+                return p;
             }
+
 
             var inputParameter = new SqlParameter(parameterName, AdoTypeMap.GetAdoType(value.GetType()))
             {
@@ -88,12 +91,12 @@ namespace Mustava.Ado
             return inputParameter;
         }
 
-        public static SqlParameter NewOutputParameter(this SqlCommand cmd, string parameterName, SqlDbType type)
+        public static SqlParameter NewOutputParameter(this IDbCommand cmd, string parameterName, SqlDbType type)
         {
             return cmd.NewOutputParameter(parameterName, type, 0);
         }
 
-        public static SqlParameter NewOutputParameter(this SqlCommand cmd, string parameterName, SqlDbType type, int size)
+        public static SqlParameter NewOutputParameter(this IDbCommand cmd, string parameterName, SqlDbType type, int size)
         {
             if (cmd == null || parameterName.Equals(string.Empty))
                 return null;
