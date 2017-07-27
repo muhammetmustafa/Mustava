@@ -146,6 +146,20 @@ namespace Mustava.Ado
         }
 
         /// <summary>
+        /// Executes the sql with the parameters provided by the parameters object and executes the sql.
+        /// </summary>
+        /// <param name="sqlCommand">Parameterized sql string appropriate for SqlParameters.</param>
+        /// <param name="parameters">Object from which parameters will be extracted and injected into SqlCommand object.</param>
+        /// <returns>True if successful, false otherwise.</returns>
+        public bool ExecuteP(string sqlCommand, object parameters)
+        {
+            var cmd = new SqlCommand(sqlCommand);
+            cmd.GenerateSqlParameters(parameters);
+
+            return Execute(cmd);
+        }
+
+        /// <summary>
         /// Executes a sql text.
         /// </summary>
         /// <param name="sqlCommand">Sql text to execute.</param>
@@ -276,9 +290,24 @@ namespace Mustava.Ado
         /// <param name="sqlCommand">Parameterized sql string appropriate for string.Format() method.</param>
         /// <param name="parameters">Parameter list to be supplied to string.Format() method. Must match the first argument.</param>
         /// <returns>DataTable if successful, null if anything goes wrong</returns>
+        [Obsolete("Use QueryF() istead")]
         public DataTable Query(string sqlCommand, params object[] parameters)
         {
             var cmd = new SqlCommand(string.Format(sqlCommand, parameters));
+
+            return Query(cmd);
+        }
+
+        /// <summary>
+        /// Executes the sql with the parameters provided by the parameters object and executes the sql.
+        /// </summary>
+        /// <param name="sqlCommand">Parameterized sql string appropriate for SqlParameters.</param>
+        /// <param name="parameters">Object from which parameters will be extracted and injected into SqlCommand object.</param>
+        /// <returns>DataTable if successful, null if anything goes wrong</returns>
+        public DataTable QueryP(string sqlCommand, object parameters)
+        {
+            var cmd = new SqlCommand(sqlCommand);
+            cmd.GenerateSqlParameters(parameters);
 
             return Query(cmd);
         }

@@ -3,6 +3,8 @@ using Mustava.Helper;
 
 namespace Mustava.DataStructures
 {
+
+    //todo : çalışmıyor.
     public class BaseEditableObject<T> : IEditableObject where T : class
     {
         private readonly T _this;
