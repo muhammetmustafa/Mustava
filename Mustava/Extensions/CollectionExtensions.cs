@@ -178,5 +178,13 @@ namespace Mustava.Extensions
                 }
             }
         }
+        
+        public static IEnumerable<List<T>> SplitList<T>(this List<T> list, int sublistSize = 30)
+        {
+            for (var i = 0; i < list.Count; i += sublistSize)
+            {
+                yield return list.GetRange(i, Math.Min(sublistSize, list.Count - i));
+            }
+        }
     }
 }
