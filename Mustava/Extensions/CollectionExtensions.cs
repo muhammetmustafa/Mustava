@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Mustava.Helper;
+using Mustava.Helpers;
 
 namespace Mustava.Extensions
 {
@@ -56,7 +57,7 @@ namespace Mustava.Extensions
             return list[0];
         }
 
-        public static bool FirstElement<T>(this IList<T> list, T element)
+        public static bool IsFirstElementEqualsTo<T>(this IList<T> list, T element)
         {
             if (list == null || list.Count <= 0)
                 return false;
@@ -72,7 +73,7 @@ namespace Mustava.Extensions
             return list[list.Count - 1];
         }
 
-        public static bool LastElement<T>(this IList<T> list, T element)
+        public static bool IsLastElementEqualsTo<T>(this IList<T> list, T element)
         {
             if (list == null || list.Count <= 0)
                 return false;
@@ -124,7 +125,7 @@ namespace Mustava.Extensions
             return true;
         }
 
-        public static bool NullOrEmpty(this IList list)
+        public static bool IsListNullOrEmpty(this IList list)
         {
             return list == null || list.Count <= 0;
         }

@@ -5,12 +5,15 @@
       <sourceFolder url="file://$MODULE_DIR$/../../Mustava" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../Mustava.DbManager" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../Mustava.WinForms" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Test" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava.DbManager/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava.DbManager/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava.WinForms/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava.WinForms/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Test/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Test/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../packages" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

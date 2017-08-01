@@ -44,5 +44,15 @@ namespace Mustava.Extensions
 
             return dateTime;
         }
+        
+        public static DateTime? ToDateTimeNullable(this object value)
+        {
+            var result = default(DateTime);
+            if (value == null) 
+                return result;
+            if (DateTime.TryParse(value.ToString(), out result))
+                return result;
+            return default(DateTime?);
+        }
     }
 }

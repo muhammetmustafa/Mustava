@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Reflection;
 using Mustava.Attributes;
 
 namespace Mustava.Extensions
@@ -59,6 +61,28 @@ namespace Mustava.Extensions
             }
 
             return symbolAttribute.Symbol;
+        }
+
+        public static T GetMyAttribute<T>(this PropertyInfo pi) where T : Attribute
+        {
+            var attributes = pi.GetCustomAttributes(typeof(T), false);
+            if (attributes.Length > 0)
+            {
+                return attributes[0] is T ? (T) attributes[0] : default(T);
+            }
+
+            return default(T);
+        }
+        
+        public static T GetMyAttribute<T>(this MemberInfo mi) where T : Attribute
+        {
+            var attributes = mi.GetCustomAttributes(typeof(T), false);
+            if (attributes.Length > 0)
+            {
+                return attributes[0] is T ? (T) attributes[0] : default(T);
+            }
+
+            return default(T);
         }
     }
 }

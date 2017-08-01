@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mustava.WinForms", "Mustava
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mustava.DbManager", "Mustava.DbManager\Mustava.DbManager.csproj", "{ACA476BB-22CB-430F-88CE-8CF615F8FCA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{0850D6B6-CDE0-4CCC-B0C4-830C9DA69F1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{ACA476BB-22CB-430F-88CE-8CF615F8FCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACA476BB-22CB-430F-88CE-8CF615F8FCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACA476BB-22CB-430F-88CE-8CF615F8FCA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0850D6B6-CDE0-4CCC-B0C4-830C9DA69F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0850D6B6-CDE0-4CCC-B0C4-830C9DA69F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0850D6B6-CDE0-4CCC-B0C4-830C9DA69F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0850D6B6-CDE0-4CCC-B0C4-830C9DA69F1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

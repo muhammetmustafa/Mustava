@@ -41,11 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ado\AdoHelpers.cs" />
     <Compile Include="Ado\AdoTypeMap.cs" />
     <Compile Include="Ado\SqlTemplates.cs" />
     <Compile Include="Attributes\SqlParserMultipleColumnAttribute.cs" />
     <Compile Include="Attributes\SqlParserNvarcharLengthAttribute.cs" />
     <Compile Include="Attributes\SqlProcOutputAttribute.cs" />
+    <Compile Include="Attributes\SqlResultColumnAttribute.cs" />
     <Compile Include="Attributes\SymbolAttribute.cs" />
     <Compile Include="DataStructures\BaseEditableObject.cs" />
     <Compile Include="Extensions\AttributeExtensions.cs" />
@@ -56,22 +58,24 @@
     <Compile Include="Extensions\GeometricExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\PrimitivesExtensions.cs" />
-    <Compile Include="Ado\SqlExtensions.cs" />
+    <Compile Include="Ado\AdoExtensions.cs" />
+    <Compile Include="Extensions\ReflectionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Helper\ChangeAwareList.cs" />
-    <Compile Include="Helper\DateTimeUtils.cs" />
-    <Compile Include="Helper\Email\EmailHelper.cs" />
-    <Compile Include="Helper\Email\EmailModel.cs" />
-    <Compile Include="Helper\Email\SmtpInfoDto.cs" />
-    <Compile Include="Helper\ExcelHelpers.cs" />
-    <Compile Include="Helper\GeneralUtils.cs" />
-    <Compile Include="Helper\LogHelper.cs" />
-    <Compile Include="Helper\PredicateBuilder.cs" />
-    <Compile Include="Helper\Randomizer.cs" />
-    <Compile Include="Helper\ReflectionUtils.cs" />
-    <Compile Include="Helper\SetList.cs" />
+    <Compile Include="Helpers\ChangeAwareList.cs" />
+    <Compile Include="Helpers\DateTimeUtils.cs" />
+    <Compile Include="Helpers\Email\EmailHelper.cs" />
+    <Compile Include="Helpers\Email\EmailModel.cs" />
+    <Compile Include="Helpers\Email\SmtpInfoDto.cs" />
+    <Compile Include="Helpers\ExcelHelpers.cs" />
+    <Compile Include="Helpers\GeneralUtils.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
+    <Compile Include="Helpers\PredicateBuilder.cs" />
+    <Compile Include="Helpers\Randomizer.cs" />
+    <Compile Include="Helpers\ReflectionHelpers.cs" />
+    <Compile Include="Helpers\SetList.cs" />
     <Compile Include="Ado\SqlHelper.cs" />
-    <Compile Include="Helper\XMLUtils.cs" />
+    <Compile Include="Helpers\TypeHelpers.cs" />
+    <Compile Include="Helpers\XMLUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

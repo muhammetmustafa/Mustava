@@ -9,7 +9,7 @@ namespace Mustava.Extensions
         {
             long result = 0;
             if (value == null) return result;
-            if (Int64.TryParse(value.ToString(), out result))
+            if (long.TryParse(value.ToString(), out result))
                 return result;
             return result;
         }
@@ -18,23 +18,23 @@ namespace Mustava.Extensions
         {
             double result = 0;
             if (value == null) return result;
-            if (Double.TryParse(value.ToString(), out result))
+            if (double.TryParse(value.ToString(), out result))
                 return result;
             return result;
         }
         
         public static bool ToBoolen(this object value)
         {
-            bool result = false;
+            var result = false;
             if (value == null) return result;
-            if (Boolean.TryParse(value.ToString(), out result))
+            if (bool.TryParse(value.ToString(), out result))
                 return result;
             return result;
         }
         
         public static int ToInt(this object value)
         {
-            int result = 0;
+            var result = 0;
 
             if (value == null)
                 return result;
@@ -42,14 +42,14 @@ namespace Mustava.Extensions
             if (value is float)
                 return Convert.ToInt32(value);
 
-            if (Int32.TryParse(value.ToString(), out result))
+            if (int.TryParse(value.ToString(), out result))
                 return result;
             return result;
         }
         
         public static DateTime ToDateTimeX(this object value)
         {
-            DateTime result = default(DateTime);
+            var result = default(DateTime);
             if (value == null) return result;
             if (DateTime.TryParse(value.ToString(), out result))
                 return result;
@@ -97,39 +97,39 @@ namespace Mustava.Extensions
         {
             long result = 0;
             if (value == null) return null;
-            if (Int64.TryParse(value.ToString(), out result))
+            if (long.TryParse(value.ToString(), out result))
                 return result;
             return null;
         }
         public static int? ToNullInt(this object value)
         {
-            int result = 0;
+            var result = 0;
             if (value == null) return null;
-            if (Int32.TryParse(value.ToString(), out result))
+            if (int.TryParse(value.ToString(), out result))
                 return result;
             return (int?)null;
         }
         public static decimal? GetDecimalValue2(this object value)
         {
-            string seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+            var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
             if (value == null || value == DBNull.Value) return null;
-            string item = value.ToString();
-            item.Replace(".", seperator);
-            item.Replace(",", seperator);
+            var item = value.ToString();
+            item = item.Replace(".", seperator);
+            item = item.Replace(",", seperator);
             decimal resultValue;
-            if (Decimal.TryParse(item, out resultValue))
+            if (decimal.TryParse(item, out resultValue))
                 return resultValue;
             return null;
         }
         public static int? GetIntergerValue2(this object value)
         {
-            string seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+            var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
             if (value == null || value == DBNull.Value) return null;
-            string item = value.ToString();
-            item.Replace(".", seperator);
-            item.Replace(",", seperator);
+            var item = value.ToString();
+            item = item.Replace(".", seperator);
+            item = item.Replace(",", seperator);
             int resultValue;
-            if (Int32.TryParse(item, out resultValue))
+            if (int.TryParse(item, out resultValue))
                 return resultValue;
             return null;
         }
@@ -137,9 +137,9 @@ namespace Mustava.Extensions
         {
 
             if (value == null || value == DBNull.Value) return null;
-            string item = value.ToString().ToDecimalSeperatorFixedFormat();
+            var item = value.ToString().ToDecimalSeperatorFixedFormat();
             double resultValue;
-            if (Double.TryParse(item, out resultValue))
+            if (double.TryParse(item, out resultValue))
                 return resultValue;
             return null;
         }
@@ -152,12 +152,6 @@ namespace Mustava.Extensions
         public static string ToStringOrDefault(this object o, string defaultText)
         {
             return o == null ? defaultText : o.ToString();
-        }
-
-        public static string toDateTimeString(this object s)
-        {
-            if (s == null) return "";
-            return DateTime.Parse(s.ToString()).ToString("dd/MM/yyyy hh:mm:ss").Replace('.', '/');
         }
 
         public static bool IsNullOrEmpty(this object s)
