@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,7 +62,7 @@
     <Compile Include="Ado\AdoExtensions.cs" />
     <Compile Include="Extensions\ReflectionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Helpers\ChangeAwareList.cs" />
+    <Compile Include="DataStructures\ChangeAwareList.cs" />
     <Compile Include="Helpers\DateTimeUtils.cs" />
     <Compile Include="Helpers\Email\EmailHelper.cs" />
     <Compile Include="Helpers\Email\EmailModel.cs" />
@@ -72,7 +73,7 @@
     <Compile Include="Helpers\PredicateBuilder.cs" />
     <Compile Include="Helpers\Randomizer.cs" />
     <Compile Include="Helpers\ReflectionHelpers.cs" />
-    <Compile Include="Helpers\SetList.cs" />
+    <Compile Include="DataStructures\SetList.cs" />
     <Compile Include="Ado\SqlHelper.cs" />
     <Compile Include="Helpers\TypeHelpers.cs" />
     <Compile Include="Helpers\XMLUtils.cs" />

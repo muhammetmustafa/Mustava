@@ -14,19 +14,7 @@ namespace Mustava.Extensions
                 return "";
             }
 
-            var memberInfo = obj.GetType().GetMember(obj.ToString());
-            if (memberInfo.Length <= 0)
-            {
-                return "";
-            }
-
-            var attributes = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
-            if (attributes.Length <= 0)
-            {
-                return "";
-            }
-
-            var attribute = attributes[0] as DescriptionAttribute;
+            var attribute = obj.GetMyAttribute<DescriptionAttribute>(obj.ToString());
             if (attribute == null)
             {
                 return "";
@@ -42,25 +30,29 @@ namespace Mustava.Extensions
                 return "";
             }
 
-            var memberInfo = obj.GetType().GetMember(obj.ToString());
-            if (memberInfo.Length <= 0)
-            {
-                return "";
-            }
-
-            var attributes = memberInfo[0].GetCustomAttributes(typeof (SymbolAttribute), false);
-            if (attributes.Length <= 0)
-            {
-                return "";
-            }
-
-            var symbolAttribute = attributes[0] as SymbolAttribute;
+            var symbolAttribute = obj.GetMyAttribute<SymbolAttribute>(obj.ToString());
             if (symbolAttribute == null)
             {
                 return "";
             }
 
             return symbolAttribute.Symbol;
+        }
+
+        public static T GetMyAttribute<T>(this object obj, string propertyName) where T : Attribute
+        {
+            if (obj == null || propertyName.IsNullOrEmpty())
+            {
+                return default(T);
+            }
+
+            var propertyInfo = obj.GetType().GetProperty(propertyName);
+            if (propertyInfo == null)
+            {
+                return default(T);
+            }
+
+            return propertyInfo.GetMyAttribute<T>();
         }
 
         public static T GetMyAttribute<T>(this PropertyInfo pi) where T : Attribute

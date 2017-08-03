@@ -7,15 +7,33 @@ namespace Mustava.Extensions
 {
     public static class EnumExtensions
     {
-        public static List<string> GetDescriptionAttributes<T>(this T enumType) where T : struct, IConvertible
+        public static List<string> GetDescriptionAttributes<T>(this T enumType) 
+            where T : struct, IConvertible
         {
-            return typeof(T).GetFields()
-                .Select(i => i.GetCustomAttributes(typeof(DescriptionAttribute), false))
+            return enumType.GetAttributePropertyList<DescriptionAttribute, T>("Description")
+                .Select(i => i.ToStringOrEmpty())
+                .Where(i => i != string.Empty)
+                .ToList()
+                ;
+        }
+
+        public static List<object> GetAttributePropertyList<TAttribute, TEnum>(this TEnum enumType, string attributePropertyName)
+            where TAttribute : Attribute
+            where TEnum : struct, IConvertible
+        {
+            if (attributePropertyName.IsNullOrEmpty())
+            {
+                return null;
+            }
+
+            return typeof(TEnum).GetFields()
+                .Select(i => i.GetCustomAttributes(typeof(TAttribute), false))
                 .Where(i => i != null && i.Length > 0)
                 .Select(i => i[0])
-                .Cast<DescriptionAttribute>()
-                .Select(i => i.Description)
+                .Cast<TAttribute>()
+                .Select(i => i.GetValueOfProperty(attributePropertyName))
+                .Where(i => i != null)
                 .ToList();
-        }  
+        }
     }
 }

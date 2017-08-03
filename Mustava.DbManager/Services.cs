@@ -22,16 +22,16 @@ namespace Mustava.DbManager
             return SqlHelper.Get(connectionString).Query(sql).ParseSqlRows<string>();
         }
 
-        public static List<NameDto> GetAllObjects(string connectionString, object[] objectTypes)
+        public static List<SqlObjectDto> GetAllObjects(string connectionString, object[] objectTypes)
         {
             const string sql = @"
-                SELECT CAST(name as NVARCHAR(500)) Name
-                FROM sysobjects 
-                WHERE sys.sysobjects.xtype IN ({0})
-                ORDER BY name ASC
+                SELECT CAST(obj.name as NVARCHAR(500)) Name, obj.xtype Type
+                FROM sysobjects obj
+                WHERE obj.xtype IN ({0})
+                ORDER BY obj.xtype, obj.name ASC
             ";
 
-            return SqlHelper.Get(connectionString).Query(sql, objectTypes.ToInString()).ParseSqlRows<NameDto>();
+            return SqlHelper.Get(connectionString).QueryF(sql, objectTypes.ToSqlInListString()).ParseSqlRows<SqlObjectDto>();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace Mustava.Extensions
 {
@@ -26,9 +27,13 @@ namespace Mustava.Extensions
         public static bool ToBoolen(this object value)
         {
             var result = false;
-            if (value == null) return result;
+
+            if (value == null)
+                return result;
+
             if (bool.TryParse(value.ToString(), out result))
                 return result;
+
             return result;
         }
         
@@ -44,15 +49,20 @@ namespace Mustava.Extensions
 
             if (int.TryParse(value.ToString(), out result))
                 return result;
+
             return result;
         }
         
         public static DateTime ToDateTimeX(this object value)
         {
             var result = default(DateTime);
-            if (value == null) return result;
+
+            if (value == null)
+                return result;
+
             if (DateTime.TryParse(value.ToString(), out result))
                 return result;
+
             return result;
         }
 
@@ -95,52 +105,74 @@ namespace Mustava.Extensions
         
         public static long? ToNullLong(this object value)
         {
-            long result = 0;
-            if (value == null) return null;
+            var result = 0L;
+
+            if (value == null)
+                return null;
+
             if (long.TryParse(value.ToString(), out result))
                 return result;
+
             return null;
         }
+
         public static int? ToNullInt(this object value)
         {
-            var result = 0;
-            if (value == null) return null;
+            int result;
+
+            if (value == null)
+                return null;
+
             if (int.TryParse(value.ToString(), out result))
                 return result;
-            return (int?)null;
+
+            return null;
         }
+
         public static decimal? GetDecimalValue2(this object value)
         {
             var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
-            if (value == null || value == DBNull.Value) return null;
-            var item = value.ToString();
-            item = item.Replace(".", seperator);
-            item = item.Replace(",", seperator);
+
+            if (value == null || value == DBNull.Value)
+                return null;
+
+            var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
+            
             decimal resultValue;
+
             if (decimal.TryParse(item, out resultValue))
                 return resultValue;
+
             return null;
         }
+
         public static int? GetIntergerValue2(this object value)
         {
             var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
-            if (value == null || value == DBNull.Value) return null;
-            var item = value.ToString();
-            item = item.Replace(".", seperator);
-            item = item.Replace(",", seperator);
+
+            if (value == null || value == DBNull.Value)
+                return null;
+
+            var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
+            
             int resultValue;
             if (int.TryParse(item, out resultValue))
                 return resultValue;
+
             return null;
         }
+
         public static double? GetDoubleValue2(this object value)
         {
+            if (value == null || value == DBNull.Value)
+                return null;
 
-            if (value == null || value == DBNull.Value) return null;
             var item = value.ToString().ToDecimalSeperatorFixedFormat();
+
             double resultValue;
             if (double.TryParse(item, out resultValue))
                 return resultValue;
+
             return null;
         }
 
@@ -160,6 +192,11 @@ namespace Mustava.Extensions
                 return true;
 
             return s.ToStringOrEmpty() == string.Empty;
+        }
+
+        public static BindingSource AsBindingSource(this object obj, string dataMember = "")
+        {
+            return new BindingSource(obj, dataMember);
         }
     }
 }

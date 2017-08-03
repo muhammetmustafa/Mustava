@@ -116,7 +116,7 @@ namespace Mustava.Ado
             return dataTable != null && dataTable.Rows.Count > 0;
         }
 
-        public static string ToInString(this object[] objects)
+        public static string ToSqlInListString(this object[] objects)
         {
             return objects.Select(i => string.Format("'{0}'", i)).Concatenate(",");
         }

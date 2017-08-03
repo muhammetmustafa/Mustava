@@ -72,6 +72,8 @@
             this.ceShowFunctions2 = new DevExpress.XtraEditors.CheckEdit();
             this.ceShowProcedures2 = new DevExpress.XtraEditors.CheckEdit();
             this.ceShowTables2 = new DevExpress.XtraEditors.CheckEdit();
+            this.gcType1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcType2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grpDb1)).BeginInit();
             this.grpDb1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbeSchema1.Properties)).BeginInit();
@@ -346,8 +348,10 @@
             // gVObjects1
             // 
             this.gVObjects1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcName1});
+            this.gcName1,
+            this.gcType1});
             this.gVObjects1.GridControl = this.gObjects1;
+            this.gVObjects1.GroupCount = 1;
             this.gVObjects1.Name = "gVObjects1";
             this.gVObjects1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gVObjects1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
@@ -357,6 +361,8 @@
             this.gVObjects1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gVObjects1.OptionsView.ColumnAutoWidth = false;
             this.gVObjects1.OptionsView.ShowGroupPanel = false;
+            this.gVObjects1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gcType1, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
             // gcName1
             // 
@@ -465,8 +471,10 @@
             // gVObjects2
             // 
             this.gVObjects2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcName2});
+            this.gcName2,
+            this.gcType2});
             this.gVObjects2.GridControl = this.gObjects2;
+            this.gVObjects2.GroupCount = 1;
             this.gVObjects2.Name = "gVObjects2";
             this.gVObjects2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gVObjects2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
@@ -476,6 +484,8 @@
             this.gVObjects2.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gVObjects2.OptionsView.ColumnAutoWidth = false;
             this.gVObjects2.OptionsView.ShowGroupPanel = false;
+            this.gVObjects2.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gcType2, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
             // gcName2
             // 
@@ -535,6 +545,22 @@
             this.ceShowTables2.Size = new System.Drawing.Size(75, 19);
             this.ceShowTables2.TabIndex = 0;
             this.ceShowTables2.Tag = "U";
+            // 
+            // gcType1
+            // 
+            this.gcType1.Caption = "Type";
+            this.gcType1.FieldName = "Type";
+            this.gcType1.Name = "gcType1";
+            this.gcType1.Visible = true;
+            this.gcType1.VisibleIndex = 1;
+            // 
+            // gcType2
+            // 
+            this.gcType2.Caption = "Type";
+            this.gcType2.FieldName = "Type";
+            this.gcType2.Name = "gcType2";
+            this.gcType2.Visible = true;
+            this.gcType2.VisibleIndex = 1;
             // 
             // DbSyncForm
             // 
@@ -641,6 +667,8 @@
         private DevExpress.XtraEditors.HyperlinkLabelControl hlcRefresh2;
         private DevExpress.XtraGrid.Columns.GridColumn gcName1;
         private DevExpress.XtraGrid.Columns.GridColumn gcName2;
+        private DevExpress.XtraGrid.Columns.GridColumn gcType1;
+        private DevExpress.XtraGrid.Columns.GridColumn gcType2;
     }
 }
 
