@@ -1,4 +1,4 @@
-namespace Mustava.Helper.Email
+namespace Mustava.Helpers.Email
 {
     public class SmtpInfoDto
     {

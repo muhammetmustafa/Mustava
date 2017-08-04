@@ -1,8 +1,7 @@
 ﻿using System;
 using Mustava.Extensions;
-using Mustava.Helpers;
 
-namespace Mustava.Helper
+namespace Mustava.Helpers
 {
     public static class GeneralUtils
     {

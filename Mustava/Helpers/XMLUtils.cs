@@ -6,7 +6,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Mustava.Extensions;
 
-namespace Mustava.Helper
+namespace Mustava.Helpers
 {
     public static class XmlUtils
     {

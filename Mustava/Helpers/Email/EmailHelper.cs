@@ -4,7 +4,7 @@ using System.Net.Mail;
 using System.Net.Mime;
 using Mustava.Extensions;
 
-namespace Mustava.Helper.Email
+namespace Mustava.Helpers.Email
 {
     public class EmailHelper
     {

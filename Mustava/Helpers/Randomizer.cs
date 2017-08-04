@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mustava.Helper
+namespace Mustava.Helpers
 {
     internal class Randomizer
     {

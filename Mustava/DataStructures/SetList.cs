@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Mustava.Helper
+namespace Mustava.DataStructures
 {
     public class SetList<T> : IList<T>
     {

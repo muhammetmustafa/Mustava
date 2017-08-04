@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace Mustava.Helper
+namespace Mustava.DataStructures
 {
     public class ChangeAwareList<T> : Collection<T>, IChangeTracking
     {

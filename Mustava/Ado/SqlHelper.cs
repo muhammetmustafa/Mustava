@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using Mustava.Attributes;
 using Mustava.Extensions;
-using Mustava.Helper;
+using Mustava.Helpers;
 
 namespace Mustava.Ado
 {

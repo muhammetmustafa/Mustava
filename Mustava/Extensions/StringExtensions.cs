@@ -13,7 +13,7 @@ namespace Mustava.Extensions
 
         public static bool IsNumeric(this string s)
         {
-            return s.All(Char.IsDigit);
+            return s.All(char.IsDigit);
         }
 
         public static string ToDecimalSeperatorFixedFormat(this string value)

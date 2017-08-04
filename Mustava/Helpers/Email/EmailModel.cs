@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Mustava.Helper.Email
+namespace Mustava.Helpers.Email
 {
     public class EmailModel
     {

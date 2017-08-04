@@ -2,7 +2,7 @@
 using System.IO;
 using Mustava.Extensions;
 
-namespace Mustava.Helper
+namespace Mustava.Helpers
 {
     public static class LogHelper
     {

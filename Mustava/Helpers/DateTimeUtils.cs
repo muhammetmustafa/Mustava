@@ -1,7 +1,7 @@
 ﻿using System;
 using Mustava.Extensions;
 
-namespace Mustava.Helper
+namespace Mustava.Helpers
 {
     public static class DateTimeUtils
     {
@@ -21,7 +21,7 @@ namespace Mustava.Helper
 
         public static string MinuteToHour(int minutes)
         {
-            return string.Format("{0}:{1}", (minutes/60).ToString("D2"), (minutes%60).ToString("D2"));
+            return string.Format("{0:D2}:{1:D2}", (minutes/60), (minutes%60));
         }
 
         public static int HourToMinute(string hour)

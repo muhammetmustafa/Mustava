@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Mustava.Helper
+namespace Mustava.Helpers
 {
     public static class PredicateBuilder
     {
