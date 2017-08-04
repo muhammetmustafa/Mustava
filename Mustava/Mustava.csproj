@@ -76,6 +76,7 @@
     <Compile Include="DataStructures\SetList.cs" />
     <Compile Include="Ado\SqlHelper.cs" />
     <Compile Include="Helpers\TypeHelpers.cs" />
+    <Compile Include="Helpers\UrlUtils.cs" />
     <Compile Include="Helpers\XMLUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -72,16 +72,12 @@ namespace Mustava.Ado
         {
             foreach (var propertyInfo in paramsDto.GetType().GetProperties())
             {
-                var outputAttributes = propertyInfo.GetCustomAttributes(typeof(SqlProcOutputAttribute), false);
-                if (outputAttributes.Length > 0)
+                var outputAttribute = propertyInfo.GetMyAttribute<SqlProcOutputAttribute>();
+                if (outputAttribute != null)
                 {
-                    var outputAttribute = outputAttributes[0] as SqlProcOutputAttribute;
-                    if (outputAttribute != null)
+                    if (cmd.Parameters.Contains("@" + propertyInfo.Name))
                     {
-                        if (cmd.Parameters.Contains("@" + propertyInfo.Name))
-                        {
-                            propertyInfo.SetValue(paramsDto, cmd.Parameters["@" + propertyInfo.Name].Value);
-                        }
+                        propertyInfo.SetValue(paramsDto, cmd.Parameters["@" + propertyInfo.Name].Value);
                     }
                 }
             }
