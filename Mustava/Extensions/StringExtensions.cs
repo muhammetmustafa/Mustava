@@ -45,6 +45,16 @@ namespace Mustava.Extensions
                 return str;
         }
 
+        public static string ReplaceFirst(this string text, string search, string replace)
+        {
+            var pos = text.IndexOf(search, StringComparison.OrdinalIgnoreCase);
+            if (pos < 0)
+            {
+                return text;
+            }
+            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
+        }
+
         public static bool EqualsNoMatter(this string str, string other)
         {
             return str.Equals(other, StringComparison.OrdinalIgnoreCase);

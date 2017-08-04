@@ -187,5 +187,18 @@ namespace Mustava.Extensions
                 yield return list.GetRange(i, Math.Min(sublistSize, list.Count - i));
             }
         }
+
+        public static void ForEachDo<T>(this IEnumerable<T> iEnumerable, Action<T> action)
+        {
+            if (iEnumerable == null || action == null)
+            {
+                return;
+            }
+
+            foreach (var item in iEnumerable)
+            {
+                action.Invoke(item);
+            }
+        }
     }
 }
