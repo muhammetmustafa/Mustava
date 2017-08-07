@@ -46,13 +46,13 @@ namespace Mustava.Extensions
                 return default(T);
             }
 
-            var propertyInfo = obj.GetType().GetProperty(propertyName);
-            if (propertyInfo == null)
+            var memberInfos = obj.GetType().GetMember(propertyName);
+            if (memberInfos.Length <= 0)
             {
                 return default(T);
             }
 
-            return propertyInfo.GetMyAttribute<T>();
+            return memberInfos[0].GetMyAttribute<T>();
         }
 
         public static T GetMyAttribute<T>(this PropertyInfo pi) where T : Attribute
