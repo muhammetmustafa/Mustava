@@ -6,30 +6,59 @@ namespace Mustava.Extensions
 {
     public static class ObjectExtensions
     {
+        public static byte ToByte(this object value)
+        {
+            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
+                return 0;
+
+            var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+            var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
+            byte resultValue;
+            return byte.TryParse(item, out resultValue) ? resultValue : (byte)0;
+        }
+
+        public static byte? ToNullByte(this object value)
+        {
+            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
+                return null;
+
+            var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+            var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
+            byte resultValue;
+            return byte.TryParse(item, out resultValue) ? resultValue : (byte?)null;
+        }
+        
         public static long ToLong(this object value)
         {
-            long result = 0;
-            if (value == null) return result;
-            if (long.TryParse(value.ToString(), out result))
-                return result;
-            return result;
+            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
+                return 0;
+
+            var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+
+            var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
+            long resultValue;
+            return long.TryParse(item, out resultValue) ? resultValue : 0;
         }
 
         public static double ToDouble(this object value)
         {
-            double result = 0;
-            if (value == null) return result;
-            if (double.TryParse(value.ToString(), out result))
-                return result;
-            return result;
+            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
+                return 0;
+
+            var item = ToDecimalSeperatorFixedFormat(value.ToString());
+
+            double resultValue;
+            if (double.TryParse(item, out resultValue))
+                return resultValue;
+            return 0;
         }
         
         public static bool ToBoolen(this object value)
         {
-            var result = false;
-
             if (value == null)
-                return result;
+                return false;
+
+            bool result;
 
             if (bool.TryParse(value.ToString(), out result))
                 return result;
@@ -39,18 +68,15 @@ namespace Mustava.Extensions
         
         public static int ToInt(this object value)
         {
-            var result = 0;
+            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
+                return 0;
 
-            if (value == null)
-                return result;
-
-            if (value is float)
-                return Convert.ToInt32(value);
-
-            if (int.TryParse(value.ToString(), out result))
-                return result;
-
-            return result;
+            var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+            var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
+            int resultValue;
+            if (int.TryParse(item, out resultValue))
+                return resultValue;
+            return 0;
         }
         
         public static DateTime ToDateTimeX(this object value)
@@ -95,66 +121,53 @@ namespace Mustava.Extensions
 
         public static DateTime ToDateTime(this DateTime? value, DateTime defaultValue)
         {
-            var result = defaultValue;
+            var result = default(DateTime);
 
             if (value == null)
                 return result;
 
-            return (DateTime) value;
+            if (DateTime.TryParse(value.ToString(), out result))
+                return result;
+
+            return result;
+        }
+        
+        public static DateTime? ToNullDateTime(this object value)
+        {
+            var result = default(DateTime);
+            if (value == null)
+                return result;
+
+            if (DateTime.TryParse(value.ToString(), out result))
+                return result;
+
+            return default(DateTime?);
         }
         
         public static long? ToNullLong(this object value)
         {
-            var result = 0L;
-
-            if (value == null)
+            if (value == null || value == DBNull.Value)
                 return null;
 
-            if (long.TryParse(value.ToString(), out result))
-                return result;
+            var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+            var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
+
+            long resultValue;
+
+            if (long.TryParse(item, out resultValue))
+                return resultValue;
 
             return null;
         }
 
         public static int? ToNullInt(this object value)
         {
-            int result;
-
-            if (value == null)
+            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return null;
 
-            if (int.TryParse(value.ToString(), out result))
-                return result;
-
-            return null;
-        }
-
-        public static decimal? GetDecimalValue2(this object value)
-        {
             var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
-
-            if (value == null || value == DBNull.Value)
-                return null;
-
             var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
-            
-            decimal resultValue;
 
-            if (decimal.TryParse(item, out resultValue))
-                return resultValue;
-
-            return null;
-        }
-
-        public static int? GetIntergerValue2(this object value)
-        {
-            var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
-
-            if (value == null || value == DBNull.Value)
-                return null;
-
-            var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
-            
             int resultValue;
             if (int.TryParse(item, out resultValue))
                 return resultValue;
@@ -162,20 +175,41 @@ namespace Mustava.Extensions
             return null;
         }
 
-        public static double? GetDoubleValue2(this object value)
+        public static decimal? GetDecimalValue2(this object value)
         {
-            if (value == null || value == DBNull.Value)
+            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return null;
 
-            var item = value.ToString().ToDecimalSeperatorFixedFormat();
+            var seperator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
+            var item = value.ToString().Replace(".", seperator).Replace(",", seperator);
+            decimal resultValue;
+            if (decimal.TryParse(item, out resultValue))
+                return resultValue;
+            return null;
+        }
+
+        public static double? GetDoubleValue2(this object value)
+        {
+            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
+                return null;
+
+            var item = ToDecimalSeperatorFixedFormat(value.ToString());
 
             double resultValue;
             if (double.TryParse(item, out resultValue))
                 return resultValue;
-
             return null;
         }
+        
+        public static string ToDecimalSeperatorFixedFormat(this string value)
+        {
+            var decimalSeperator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
+            value = value.Replace(decimalSeperator == "." ? "," : ".", decimalSeperator);
+
+            return value;
+        }
+        
         public static string ToStringOrEmpty(this object o)
         {
             return o == null ? "" : o.ToString();
