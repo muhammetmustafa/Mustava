@@ -19,7 +19,7 @@ namespace Mustava.Helpers
 
         public static string RemoveNonvalidXmlChars(string text)
         {
-            if (text.IsNullOrEmpty())
+            if (text.ExIsNullOrEmpty())
                 return string.Empty;
             var stringBuilder = new StringBuilder();
 

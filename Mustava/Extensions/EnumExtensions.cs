@@ -11,7 +11,7 @@ namespace Mustava.Extensions
             where T : struct, IConvertible
         {
             return enumType.GetAttributePropertyList<DescriptionAttribute, T>("Description")
-                .Select(i => i.ToStringOrEmpty())
+                .Select(i => i.ExToStringOrEmpty())
                 .Where(i => i != string.Empty)
                 .ToList()
                 ;
@@ -21,7 +21,7 @@ namespace Mustava.Extensions
             where TAttribute : Attribute
             where TEnum : struct, IConvertible
         {
-            if (attributePropertyName.IsNullOrEmpty())
+            if (attributePropertyName.ExIsNullOrEmpty())
             {
                 return null;
             }

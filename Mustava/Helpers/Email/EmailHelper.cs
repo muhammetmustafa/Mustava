@@ -81,7 +81,7 @@ namespace Mustava.Helpers.Email
                 Timeout = 10 * 60 * 1000
             };
 
-            if (!attachmentName.IsNullOrEmpty() && attachmentSource != null)
+            if (!attachmentName.ExIsNullOrEmpty() && attachmentSource != null)
             {
                 attachmentSource.Position = 0;
                 var attachment = new Attachment(attachmentSource, MediaTypeNames.Application.Pdf);

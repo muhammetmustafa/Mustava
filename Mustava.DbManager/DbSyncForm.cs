@@ -82,9 +82,9 @@ namespace Mustava.DbManager
         {
             var connectionString = new SqlConnectionStringBuilder
             {
-                DataSource = cbeServer1.EditValue.ToStringOrEmpty(),
-                UserID = txtUsername1.EditValue.ToStringOrEmpty(),
-                Password = txtPassword1.EditValue.ToStringOrEmpty()
+                DataSource = cbeServer1.EditValue.ExToStringOrEmpty(),
+                UserID = txtUsername1.EditValue.ExToStringOrEmpty(),
+                Password = txtPassword1.EditValue.ExToStringOrEmpty()
             };
 
             try
@@ -109,9 +109,9 @@ namespace Mustava.DbManager
         {
             var connectionString = new SqlConnectionStringBuilder
             {
-                DataSource = cbeServer2.EditValue.ToStringOrEmpty(),
-                UserID = txtUsername2.EditValue.ToStringOrEmpty(),
-                Password = txtPassword2.EditValue.ToStringOrEmpty()
+                DataSource = cbeServer2.EditValue.ExToStringOrEmpty(),
+                UserID = txtUsername2.EditValue.ExToStringOrEmpty(),
+                Password = txtPassword2.EditValue.ExToStringOrEmpty()
             };
 
             try
@@ -176,8 +176,8 @@ namespace Mustava.DbManager
             if (ceShowFunctions.Checked)
                 objects.Add(ceShowFunctions.Tag);
 
-            var schema = cbeSchema1.EditValue.ToStringOrEmpty();
-            if (schema.IsNullOrEmpty())
+            var schema = cbeSchema1.EditValue.ExToStringOrEmpty();
+            if (schema.ExIsNullOrEmpty())
             {
                 XtraMessageBox.Show("Şema seç");
                 return;
@@ -202,8 +202,8 @@ namespace Mustava.DbManager
             if (ceShowFunctions2.Checked)
                 objects.Add(ceShowFunctions2.Tag);
 
-            var schema = cbeSchema2.EditValue.ToStringOrEmpty();
-            if (schema.IsNullOrEmpty())
+            var schema = cbeSchema2.EditValue.ExToStringOrEmpty();
+            if (schema.ExIsNullOrEmpty())
             {
                 XtraMessageBox.Show("Şema seç");
                 return;
@@ -215,17 +215,17 @@ namespace Mustava.DbManager
 
         private void cbeSchema1_EditValueChanged(object sender, EventArgs e)
         {
-            if (cbeSchema1.EditValue.ToStringOrEmpty() != string.Empty)
+            if (cbeSchema1.EditValue.ExToStringOrEmpty() != string.Empty)
             {
-                _connectionString1.InitialCatalog = cbeSchema1.EditValue.ToStringOrEmpty();
+                _connectionString1.InitialCatalog = cbeSchema1.EditValue.ExToStringOrEmpty();
             }
         }
 
         private void cbeSchema2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbeSchema2.EditValue.ToStringOrEmpty() != string.Empty)
+            if (cbeSchema2.EditValue.ExToStringOrEmpty() != string.Empty)
             {
-                _connectionString2.InitialCatalog = cbeSchema2.EditValue.ToStringOrEmpty();
+                _connectionString2.InitialCatalog = cbeSchema2.EditValue.ExToStringOrEmpty();
             }
         }
 

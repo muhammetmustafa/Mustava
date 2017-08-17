@@ -19,7 +19,7 @@ namespace Mustava.WinForms.Validation.Rules
             var startDateTime = (DateTime) start;
             var endDateTime = (DateTime) end;
 
-            if (startDateTime.isMinOrMax() || endDateTime.isMinOrMax())
+            if (startDateTime.IsMinOrMax() || endDateTime.IsMinOrMax())
                 return false;
 
             if (startDateTime >= endDateTime)

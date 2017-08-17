@@ -41,7 +41,7 @@ namespace Mustava.Extensions
 
         public static T GetMyAttribute<T>(this object obj, string propertyName) where T : Attribute
         {
-            if (obj == null || propertyName.IsNullOrEmpty())
+            if (obj == null || propertyName.ExIsNullOrEmpty())
             {
                 return default(T);
             }

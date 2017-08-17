@@ -10,7 +10,7 @@ namespace Mustava.WinForms.Validation.Converters
             if (s == null)
                 return null;
 
-            return s.ToDateTimeX();
+            return s.ExToDateTimeX();
         }
     }
 }

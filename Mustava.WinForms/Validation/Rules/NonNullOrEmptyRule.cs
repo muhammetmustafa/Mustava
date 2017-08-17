@@ -9,7 +9,7 @@ namespace Mustava.WinForms.Validation.Rules
         {
             var value = ControlInfo.GetValue();
 
-            if (value.ToStringOrEmpty().Trim().IsNullOrEmpty())
+            if (value.ExToStringOrEmpty().Trim().ExIsNullOrEmpty())
                 return false;
 
             return true;

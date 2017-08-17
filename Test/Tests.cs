@@ -25,8 +25,13 @@ namespace Test
         [Test]
         public void Test1()
         {
-            var str = "34mn,,,mlmlm";
-            Console.WriteLine(str.Split(new []{','}, StringSplitOptions.RemoveEmptyEntries).Concatenate("."));
+            var str = new
+            {
+                ali = "amam",
+                veli = DateTime.Now
+            };
+            
+            Console.WriteLine(str.GetValueOfProperty("veli").ExIsNullOrEmpty() ? "boş" : "dolu");
         }
     }
 }

@@ -270,7 +270,7 @@ namespace Mustava.Ado
                     }
                     
                     //if still we dont a have a field name then search with property name
-                    if (column.IsNullOrEmpty())
+                    if (column.ExIsNullOrEmpty())
                     {
                         column = row.Table.Columns.Contains(propertyInfo.Name)
                             ? propertyInfo.Name
@@ -281,7 +281,7 @@ namespace Mustava.Ado
                     //then search the property name in the result set's columns collection.
                     //But this search may not always yield the best result. Because search is done
                     //in substrings and case insensitive.
-                    if (column.IsNullOrEmpty() && useSmartPropertyNameMatching)
+                    if (column.ExIsNullOrEmpty() && useSmartPropertyNameMatching)
                     {
                         var columnNameMatch = smartMatch(row, propertyInfo.Name);
                         if (columnNameMatch != null)
@@ -322,7 +322,7 @@ namespace Mustava.Ado
                     column = resultColumnAttribute.FieldName;
                 }
 
-                if (column.IsNullOrEmpty())
+                if (column.ExIsNullOrEmpty())
                 {
                     column = row.ColumnExists(propertyInfo.Name) ? propertyInfo.Name : null;
                 }

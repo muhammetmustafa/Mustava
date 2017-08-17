@@ -6,7 +6,7 @@ namespace Mustava.WinForms.Validation.Converters
     {
         protected override object doConvert(object obj)
         {
-            return obj.ToInt();
+            return obj.ExToInt();
         }
     }
 }

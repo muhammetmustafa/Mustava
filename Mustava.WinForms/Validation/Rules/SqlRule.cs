@@ -11,15 +11,15 @@ namespace Mustava.WinForms.Validation.Rules
 
         protected override bool CustomValidation()
         {
-            var val = ControlInfo.GetValue().ToStringOrEmpty();
+            var val = ControlInfo.GetValue().ExToStringOrEmpty();
 
-            if (val.IsEmpty())
+            if (val.ExIsEmpty())
                 return true;
 
             if (CommandText == null)
                 return false;
 
-            var sql = string.Format(CommandText, val.ToStringOrEmpty());
+            var sql = string.Format(CommandText, val.ExToStringOrEmpty());
             var cmd = new SqlCommand(sql);
             
             return new SqlHelper().Query(cmd).Rows.Count > 0;

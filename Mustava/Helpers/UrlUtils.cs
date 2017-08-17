@@ -7,7 +7,7 @@ namespace Mustava.Helpers
     {
         public static string GetResourcePart(string url)
         {
-            if (url.IsNullOrEmpty())
+            if (url.ExIsNullOrEmpty())
             {
                 return null;
             }

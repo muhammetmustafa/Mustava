@@ -26,14 +26,14 @@ namespace Mustava.Helpers
 
         public static int HourToMinute(string hour)
         {
-            if (hour.IsNullOrEmpty())
+            if (hour.ExIsNullOrEmpty())
                 return 0;
 
             var saatler = hour.Split(':');
             if (saatler.Length < 2)
                 return 0;
 
-            return saatler[0].ToInt() * 60 + saatler[1].ToInt();
+            return saatler[0].ExToInt() * 60 + saatler[1].ExToInt();
         }
     }
 }

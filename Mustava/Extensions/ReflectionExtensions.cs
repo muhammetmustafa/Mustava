@@ -11,7 +11,7 @@ namespace Mustava.Extensions
          public static List<object> GetValuesOfProperty<T>(this List<T> objs, string propertyName,
             bool recursive = false)
         {
-            if (objs == null || propertyName.IsNullOrEmpty())
+            if (objs == null || propertyName.ExIsNullOrEmpty())
                 return null;
             if (objs.Count <= 0)
                 return new List<object>();
@@ -59,12 +59,12 @@ namespace Mustava.Extensions
 
         public static string GetStringProperty(this object obj, string propertyName)
         {
-            return obj.GetValueOfProperty(propertyName).ToStringOrEmpty();
+            return obj.GetValueOfProperty(propertyName).ExToStringOrEmpty();
         }
 
         public static DateTime GetDateTimeProperty(this object obj, string propertyName)
         {
-            return obj.GetStringProperty(propertyName).ToDateTimeX(DateTime.MinValue);
+            return obj.GetStringProperty(propertyName).ExToDateTimeX(DateTime.MinValue);
         }
 
         public static List<string> GetPropertyNames(this object obj)

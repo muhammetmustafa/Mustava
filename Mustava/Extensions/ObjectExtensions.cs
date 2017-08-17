@@ -6,7 +6,7 @@ namespace Mustava.Extensions
 {
     public static class ObjectExtensions
     {
-        public static byte ToByte(this object value)
+        public static byte ExToByte(this object value)
         {
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return 0;
@@ -17,7 +17,7 @@ namespace Mustava.Extensions
             return byte.TryParse(item, out resultValue) ? resultValue : (byte)0;
         }
 
-        public static byte? ToNullByte(this object value)
+        public static byte? ExToNullByte(this object value)
         {
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return null;
@@ -28,7 +28,7 @@ namespace Mustava.Extensions
             return byte.TryParse(item, out resultValue) ? resultValue : (byte?)null;
         }
         
-        public static long ToLong(this object value)
+        public static long ExToLong(this object value)
         {
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return 0;
@@ -40,12 +40,12 @@ namespace Mustava.Extensions
             return long.TryParse(item, out resultValue) ? resultValue : 0;
         }
 
-        public static double ToDouble(this object value)
+        public static double ExToDouble(this object value)
         {
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return 0;
 
-            var item = ToDecimalSeperatorFixedFormat(value.ToString());
+            var item = ExToDecimalSeperatorFixedFormat(value.ToString());
 
             double resultValue;
             if (double.TryParse(item, out resultValue))
@@ -53,7 +53,7 @@ namespace Mustava.Extensions
             return 0;
         }
         
-        public static bool ToBoolen(this object value)
+        public static bool ExToBoolen(this object value)
         {
             if (value == null)
                 return false;
@@ -66,7 +66,7 @@ namespace Mustava.Extensions
             return result;
         }
         
-        public static int ToInt(this object value)
+        public static int ExToInt(this object value)
         {
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return 0;
@@ -79,7 +79,7 @@ namespace Mustava.Extensions
             return 0;
         }
         
-        public static DateTime ToDateTimeX(this object value)
+        public static DateTime ExToDateTimeX(this object value)
         {
             var result = default(DateTime);
 
@@ -92,7 +92,7 @@ namespace Mustava.Extensions
             return result;
         }
 
-        public static DateTime ToDateTimeX(this object value, string format)
+        public static DateTime ExToDateTimeX(this object value, string format)
         {
             var result = default(DateTime);
 
@@ -105,7 +105,7 @@ namespace Mustava.Extensions
             return result;
         }
 
-        public static DateTime ToDateTimeX(this object value, DateTime defaultValue)
+        public static DateTime ExToDateTimeX(this object value, DateTime defaultValue)
         {
             var result = defaultValue;
 
@@ -119,7 +119,7 @@ namespace Mustava.Extensions
                 result = defaultValue;return result;
         }
 
-        public static DateTime ToDateTime(this DateTime? value, DateTime defaultValue)
+        public static DateTime ExToDateTime(this DateTime? value, DateTime defaultValue)
         {
             var result = default(DateTime);
 
@@ -132,7 +132,7 @@ namespace Mustava.Extensions
             return result;
         }
         
-        public static DateTime? ToNullDateTime(this object value)
+        public static DateTime? ExToNullDateTime(this object value)
         {
             var result = default(DateTime);
             if (value == null)
@@ -144,7 +144,7 @@ namespace Mustava.Extensions
             return default(DateTime?);
         }
         
-        public static long? ToNullLong(this object value)
+        public static long? ExToNullLong(this object value)
         {
             if (value == null || value == DBNull.Value)
                 return null;
@@ -160,7 +160,7 @@ namespace Mustava.Extensions
             return null;
         }
 
-        public static int? ToNullInt(this object value)
+        public static int? ExToNullInt(this object value)
         {
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return null;
@@ -175,7 +175,7 @@ namespace Mustava.Extensions
             return null;
         }
 
-        public static decimal? GetDecimalValue2(this object value)
+        public static decimal? ExGetDecimalValue2(this object value)
         {
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return null;
@@ -188,12 +188,12 @@ namespace Mustava.Extensions
             return null;
         }
 
-        public static double? GetDoubleValue2(this object value)
+        public static double? ExGetDoubleValue2(this object value)
         {
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
                 return null;
 
-            var item = ToDecimalSeperatorFixedFormat(value.ToString());
+            var item = ExToDecimalSeperatorFixedFormat(value.ToString());
 
             double resultValue;
             if (double.TryParse(item, out resultValue))
@@ -201,7 +201,7 @@ namespace Mustava.Extensions
             return null;
         }
         
-        public static string ToDecimalSeperatorFixedFormat(this string value)
+        public static string ExToDecimalSeperatorFixedFormat(this string value)
         {
             var decimalSeperator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
@@ -210,22 +210,22 @@ namespace Mustava.Extensions
             return value;
         }
         
-        public static string ToStringOrEmpty(this object o)
+        public static string ExToStringOrEmpty(this object o)
         {
             return o == null ? "" : o.ToString();
         }
 
-        public static string ToStringOrDefault(this object o, string defaultText)
+        public static string ExToStringOrDefault(this object o, string defaultText)
         {
             return o == null ? defaultText : o.ToString();
         }
 
-        public static bool IsNullOrEmpty(this object s)
+        public static bool ExIsNullOrEmpty(this object s)
         {
             if (s == null)
                 return true;
 
-            return s.ToStringOrEmpty() == string.Empty;
+            return s.ExToStringOrEmpty() == string.Empty;
         }
 
         public static BindingSource AsBindingSource(this object obj, string dataMember = "")

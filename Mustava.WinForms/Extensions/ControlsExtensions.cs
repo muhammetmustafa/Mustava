@@ -58,7 +58,7 @@ namespace Mustava.WinForms.Extensions
                     continue;
 
                 var value = control.GetStringProperty(valueProperty);
-                if (value.IsNullOrEmpty())
+                if (value.ExIsNullOrEmpty())
                     continue;
 
                 var properties = control.GetValueOfProperty(namesProperty);
@@ -66,7 +66,7 @@ namespace Mustava.WinForms.Extensions
                     continue;
 
                 var orBuilder = PredicateBuilder.False<T>();
-                foreach (var propertyName in properties.ToStringOrEmpty().Split(','))
+                foreach (var propertyName in properties.ExToStringOrEmpty().Split(','))
                 {
                     var name = propertyName;
                     orBuilder = orBuilder.Or(item => GeneralUtils.FilterCheck(item, name, value));

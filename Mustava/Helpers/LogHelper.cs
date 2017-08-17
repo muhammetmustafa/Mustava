@@ -24,7 +24,7 @@ namespace Mustava.Helpers
             switch (WhereToLog)
             {
                 case LoggingPlace.File:
-                    if (!FileName.IsNullOrEmpty())
+                    if (!FileName.ExIsNullOrEmpty())
                     {
                         File.AppendAllText(FileName, str + Environment.NewLine);
                     }

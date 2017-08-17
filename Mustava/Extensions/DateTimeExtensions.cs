@@ -10,7 +10,7 @@ namespace Mustava.Extensions
             return dateTime.AddDays(7*weeks);
         }
 
-        public static bool isMinOrMax(this DateTime dateTime)
+        public static bool IsMinOrMax(this DateTime dateTime)
         {
             return dateTime.Equals(DateTime.MinValue) || dateTime.Equals(DateTime.MaxValue);
         }
@@ -37,15 +37,15 @@ namespace Mustava.Extensions
             return yearList;
         }
 
-        public static DateTime? ToDateTimeNullable(this DateTime dateTime)
+        public static DateTime? ExToDateTimeNullable(this DateTime dateTime)
         {
-            if (dateTime.isMinOrMax())
+            if (dateTime.IsMinOrMax())
                 return null;
 
             return dateTime;
         }
         
-        public static DateTime? ToDateTimeNullable(this object value)
+        public static DateTime? ExToDateTimeNullable(this object value)
         {
             var result = default(DateTime);
             if (value == null) 

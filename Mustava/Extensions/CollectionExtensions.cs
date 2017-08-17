@@ -16,7 +16,7 @@ namespace Mustava.Extensions
 
         public static string Concatenate(this IEnumerable set, string joiner)
         {
-            if (set == null || joiner.IsNullOrEmpty())
+            if (set == null || joiner.ExIsNullOrEmpty())
                 return string.Empty;
 
             var join = new StringBuilder();
@@ -31,18 +31,18 @@ namespace Mustava.Extensions
 
         public static string ConcatenateWithReflection(this ICollection set, string joiner, string propertyName)
         {
-            if (set == null || set.Count <= 0 || joiner.IsNullOrEmpty())
+            if (set == null || set.Count <= 0 || joiner.ExIsNullOrEmpty())
                 return string.Empty;
 
             var join = new StringBuilder();
             foreach (var item in set)
             {
                 var propertyValue = item.GetValueOfProperty(propertyName, true);
-                if (propertyValue.ToStringOrEmpty().IsEmpty())
+                if (propertyValue.ExToStringOrEmpty().ExIsEmpty())
                     continue;
 
                 join.Append(joiner);
-                join.Append(propertyValue.ToStringOrEmpty());
+                join.Append(propertyValue.ExToStringOrEmpty());
             }
 
             return join.ToString().Substring(joiner.Length);
@@ -131,7 +131,7 @@ namespace Mustava.Extensions
 
         public static void RecursiveTraveler<T>(this IEnumerable collection, string childrenPropertyName, Action<T> action)
         {
-            if (collection == null || action == null || childrenPropertyName.IsNullOrEmpty())
+            if (collection == null || action == null || childrenPropertyName.ExIsNullOrEmpty())
             {
                 return;
             }
@@ -159,7 +159,7 @@ namespace Mustava.Extensions
 
         public static void RecursiveTraveler<T>(this IEnumerable<T> collection, string childrenPropertyName, Action<T> action)
         {
-            if (collection == null || action == null || childrenPropertyName.IsNullOrEmpty())
+            if (collection == null || action == null || childrenPropertyName.ExIsNullOrEmpty())
             {
                 return;
             }

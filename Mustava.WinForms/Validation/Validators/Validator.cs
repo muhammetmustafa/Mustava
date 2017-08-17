@@ -28,7 +28,7 @@ namespace Mustava.WinForms.Validation.Validators
 
         public bool AddValidation(Control control1, Control control2, string propertyName, params Rule[] rules)
         {
-            if (control1 == null || control2 == null || propertyName.IsNullOrEmpty() || rules.Length <= 0)
+            if (control1 == null || control2 == null || propertyName.ExIsNullOrEmpty() || rules.Length <= 0)
                 return false;
 
             var one = new ControlInfo(control1, propertyName);

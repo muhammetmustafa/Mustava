@@ -9,7 +9,7 @@ namespace Mustava.WinForms.Helpers
         {
             var dialog = new FolderBrowserDialog {Description = description};
             var result = dialog.ShowDialog(parent);
-            if (result != DialogResult.OK || dialog.SelectedPath.IsNullOrEmpty())
+            if (result != DialogResult.OK || dialog.SelectedPath.ExIsNullOrEmpty())
             {
                 return null;
             }

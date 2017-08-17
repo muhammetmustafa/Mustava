@@ -65,18 +65,18 @@ namespace Mustava.WinForms.Validation.ValidationItems
 
         private DateTime getFirstDate()
         {
-            var year = FirstYearPart == null ? 1900 : FirstYearPart.GetValue().ToInt();
-            var month = FirstMonthPart == null ? 1 : FirstMonthPart.GetValue().ToInt();
-            var day = FirstDayPart == null ? 1 : FirstDayPart.GetValue().ToInt();
+            var year = FirstYearPart == null ? 1900 : FirstYearPart.GetValue().ExToInt();
+            var month = FirstMonthPart == null ? 1 : FirstMonthPart.GetValue().ExToInt();
+            var day = FirstDayPart == null ? 1 : FirstDayPart.GetValue().ExToInt();
 
             return new DateTime(year, month, day, 0, 0, 0);
         }
 
         private DateTime getSecondDate()
         {
-            var year = SecondYearPart == null ? 1900 : SecondYearPart.GetValue().ToInt();
-            var month = SecondMonthPart == null ? 1 : SecondMonthPart.GetValue().ToInt();
-            var day = SecondDayPart == null ? 1 : SecondDayPart.GetValue().ToInt();
+            var year = SecondYearPart == null ? 1900 : SecondYearPart.GetValue().ExToInt();
+            var month = SecondMonthPart == null ? 1 : SecondMonthPart.GetValue().ExToInt();
+            var day = SecondDayPart == null ? 1 : SecondDayPart.GetValue().ExToInt();
 
             return new DateTime(year, month, day, 0, 0, 0);
         }
