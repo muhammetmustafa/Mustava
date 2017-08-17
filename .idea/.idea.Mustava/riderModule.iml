@@ -5,9 +5,12 @@
       <sourceFolder url="file://$MODULE_DIR$/../../Mustava" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../Mustava.DbManager" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../Mustava.WinForms" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Mustava.WinForms.Devexpress" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../Test" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava.DbManager/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava.DbManager/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Mustava.WinForms.Devexpress/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Mustava.WinForms.Devexpress/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava.WinForms/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava.WinForms/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../Mustava/bin" />

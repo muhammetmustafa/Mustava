@@ -1,12 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using DevExpress.Utils;
-using DevExpress.XtraGrid.Views.Grid;
 using Mustava.Extensions;
 using Mustava.Helpers;
 
-namespace Mustava.WinForms
+namespace Mustava.WinForms.Extensions
 {
     public static class ControlsExtensions
     {
@@ -48,54 +46,6 @@ namespace Mustava.WinForms
         public static void selectNext(this ComboBox control)
         {
             control.SelectedIndex += 1;
-        }
-
-        public static string GridViewLayoutToXml(this GridView gridView)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                using (var streamReader = new StreamReader(memoryStream))
-                {
-                    gridView.OptionsLayout.StoreAllOptions = true;
-                    gridView.SaveLayoutToStream(memoryStream, OptionsLayoutBase.FullLayout);
-                    memoryStream.Position = 0;
-                    
-                    return streamReader.ReadToEnd();
-                }
-            }
-        }
-
-        public static void XmlToGridViewLayout(this GridView gridView, string layoutXml)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                using (var streamWriter = new StreamWriter(memoryStream))
-                {
-                    streamWriter.Write(layoutXml);
-                    streamWriter.Flush();
-                    memoryStream.Position = 0;
-
-                    gridView.GridControl.ForceInitialize();
-                    gridView.RestoreLayoutFromStream(memoryStream, OptionsLayoutBase.FullLayout);
-                }
-            }
-
-        }
-
-        public static void SetGridDataSourceWithIntactView(this GridView gridView, object dataSource)
-        {
-            var focusedRowHandle = gridView.FocusedRowHandle;
-            var topRow = gridView.TopRowIndex;
-
-            gridView.GridControl.DataSource = dataSource.AsBindingSource();
-
-            gridView.FocusedRowHandle = focusedRowHandle;
-            gridView.TopRowIndex = topRow;
-        }
-
-        public static BindingSource AsBindingSource(this object o)
-        {
-            return new BindingSource(o, "");
         }
 
         public static Func<T, bool> GenerateFilters<T>(Control.ControlCollection controls, string valueProperty, string namesProperty)
