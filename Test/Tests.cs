@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Mustava.Ado;
 using Mustava.Attributes;
 using Mustava.Extensions;
 using NUnit.Framework;
@@ -19,19 +20,19 @@ namespace Test
         Uc
     }
     
-    [TestFixture]
     public class Tests
     {
-        [Test]
         public void Test1()
         {
-            var str = new
-            {
-                ali = "amam",
-                veli = DateTime.Now
-            };
-            
-            Console.WriteLine(str.GetValueOfProperty("veli").ExIsNullOrEmpty() ? "boş" : "dolu");
+            DbHelper
+                .SetQuery(
+                    Query
+                        .New("Select * from Memberships")
+                        .SetParameters(new {})          
+                 )
+                .FetchItem<>()
+                .FetchList<>()
+                .Execute()
         }
     }
 }

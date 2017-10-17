@@ -2,7 +2,7 @@
 using System.IO;
 using Mustava.Extensions;
 
-namespace Mustava.Helpers
+namespace Mustava.Logger
 {
     public static class LogHelper
     {
@@ -40,7 +40,7 @@ namespace Mustava.Helpers
 
         public static void LogF(string message, params object[] parameters)
         {
-            Log(DateTime.Now.ToString("G") + "::: " + string.Format(message, parameters));
+            Log(string.Format(message, parameters));
         }
     }
 }

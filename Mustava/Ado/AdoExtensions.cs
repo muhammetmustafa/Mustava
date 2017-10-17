@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Mustava.Attributes;
 using Mustava.Extensions;
 
@@ -23,11 +24,13 @@ namespace Mustava.Ado
         /// </summary>
         /// <param name="cmd"></param>
         /// <param name="obj"></param>
-        public static void GenerateSqlParameters(this IDbCommand cmd, object obj)
+        public static List<SqlParameter> GenerateSqlParameters(this IDbCommand cmd, object obj)
         {
-            if (cmd == null || obj == null)
-                return;
+            if (obj == null)
+                return null;
 
+            var parameterList = new List<SqlParameter>();
+            
             foreach (var propertyInfo in obj.GetType().GetProperties())
             {
                 var parameterName = "@" + propertyInfo.Name;
@@ -49,13 +52,20 @@ namespace Mustava.Ado
                     var outputAttribute = outputAttributes[0] as SqlProcOutputAttribute;
                     if (outputAttribute != null)
                     {
-                        cmd.NewOutputParameter(parameterName, outputAttribute.SqlDbType, parameterLength.GetValueOrDefault(0));
+                        var parameter = cmd.NewOutputParameter(parameterName, outputAttribute.SqlDbType,
+                            parameterLength.GetValueOrDefault(0));
+                        
+                        parameterList.Add(parameter);
+                        
                         continue;
                     }
                 }
 
-                cmd.NewInputParameter(parameterName, propertyInfo.GetValue(obj, null), parameterLength);
+                var parameter1 = cmd.NewInputParameter(parameterName, propertyInfo.GetValue(obj, null), parameterLength);
+                parameterList.Add(parameter1);
             }
+
+            return parameterList;
         }
 
         public static SqlParameter NewInputParameter(this IDbCommand cmd, string parameterName, object value)
@@ -65,8 +75,10 @@ namespace Mustava.Ado
 
         public static SqlParameter NewInputParameter(this IDbCommand cmd, string parameterName, object value, int? size)
         {
-            if (cmd == null || parameterName.Equals(string.Empty))
+            if (parameterName.ExIsNullOrEmpty())
+            {
                 return null;
+            }
 
             if (!parameterName.StartsWith("@"))
                 parameterName = "@" + parameterName;
@@ -74,10 +86,12 @@ namespace Mustava.Ado
             if (value == null)
             {
                 var p = new SqlParameter(parameterName, DBNull.Value);
-                cmd.Parameters.Add(p);
+                if (cmd != null)
+                {
+                    cmd.Parameters.Add(p);
+                }
                 return p;
             }
-
 
             var inputParameter = new SqlParameter(parameterName, AdoTypeMap.GetAdoType(value.GetType()))
             {
@@ -87,7 +101,10 @@ namespace Mustava.Ado
             if (size != null && size > 0)
                 inputParameter.Size = (int)size;
 
-            cmd.Parameters.Add(inputParameter);
+            if (cmd != null)
+            {
+                cmd.Parameters.Add(inputParameter);
+            }
 
             return inputParameter;
         }
@@ -99,14 +116,21 @@ namespace Mustava.Ado
 
         public static SqlParameter NewOutputParameter(this IDbCommand cmd, string parameterName, SqlDbType type, int size)
         {
-            if (cmd == null || parameterName.Equals(string.Empty))
+            if (parameterName.ExIsNullOrEmpty())
+            {
                 return null;
+            }
 
             if (parameterName.StartsWith("@"))
+            {
                 parameterName = parameterName.Substring(1);
+            }
 
             var outputParameter = new SqlParameter("@" + parameterName, type, size) { Direction = ParameterDirection.Output };
-            cmd.Parameters.Add(outputParameter);
+            if (cmd != null)
+            {
+                cmd.Parameters.Add(outputParameter);
+            }
 
             return outputParameter;
         }
