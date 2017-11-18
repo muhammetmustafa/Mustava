@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Mustava.Ado.QueryGeneration;
 using Mustava.Extensions;
 
 namespace Mustava.Ado
 {
     public class DbHelper
     {
-        public Query QueryObject { get; set; }
+        public SqlQuery QueryObject { get; set; }
         
         public int Timeout { get; set; }
 
@@ -15,20 +16,20 @@ namespace Mustava.Ado
         
         public SqlCommand GenerateSqlCommand()
         {
-            if (QueryObject == null || QueryObject.QueryString.ExIsNullOrEmpty())
+            if (QueryObject == null || QueryObject.GetQueryString().ExIsNullOrEmpty())
             {
                 return null;
             }
 
-            var sqlCommand = new SqlCommand(QueryObject.QueryString)
+            var sqlCommand = new SqlCommand(QueryObject.GetQueryString())
             {
-                CommandType = QueryObject.CommandType,
+                CommandType = QueryObject.GetCommandType(),
                 CommandTimeout =  Timeout
             };
 
-            if (!QueryObject.Parameters.IsListNullOrEmpty())
+            if (!QueryObject.GetParameters().IsListNullOrEmpty())
             {
-                foreach (var sqlParameter in QueryObject.Parameters)
+                foreach (var sqlParameter in QueryObject.GetParameters())
                 {
                     sqlCommand.Parameters.Add(sqlParameter);   
                 }
@@ -37,30 +38,61 @@ namespace Mustava.Ado
             return sqlCommand;
         }
 
-        public static DbHelper SetQuery(Query query)
+        
+        public static DbHelper SetQuery(SqlQuery query)
         {
             return new DbHelper
             {
                 QueryObject = query
             };
         }
-
-        public T FetchItem<T>()
+        
+        public SqlQuery Query
+        {
+            get
+            {
+                if (QueryObject == null)
+                    QueryObject = new SqlQuery();
+                
+                return QueryObject;
+            }
+            set { QueryObject = value; }
+        }
+        
+        public T FetchSingle<T>()
         {
             var sqlHelper = SqlHelper.Get(ConnectionString);
-            sqlHelper.Timeout = Timeout;
-            sqlHelper
-            
+            var cmd = GenerateSqlCommand();
+            if (cmd == null)
+            {
+                return default(T);
+            }
+
+            return sqlHelper.Query(cmd).ParseFirst<T>();
         }
         
         public List<T> FetchList<T>()
         {
-            
+            var sqlHelper = SqlHelper.Get(ConnectionString);
+            var cmd = GenerateSqlCommand();
+            if (cmd == null)
+            {
+                return default(List<T>);
+            }
+
+            return sqlHelper.Query(cmd).ParseSqlRows<T>();
         }
 
         public bool Execute()
         {
-            
+            var sqlHelper = SqlHelper.Get(ConnectionString);
+            var cmd = GenerateSqlCommand();
+            if (cmd == null)
+            {
+                return false;
+            }
+
+            return sqlHelper.Execute(cmd);
         }
     }
 }

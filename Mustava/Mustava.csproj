@@ -46,7 +46,9 @@
     <Compile Include="Ado\AdoHelpers.cs" />
     <Compile Include="Ado\AdoTypeMap.cs" />
     <Compile Include="Ado\DbHelper.cs" />
-    <Compile Include="Ado\Query.cs" />
+    <Compile Include="Ado\QueryGeneration\IQuery.cs" />
+    <Compile Include="Ado\QueryGeneration\Procedure.cs" />
+    <Compile Include="Ado\QueryGeneration\SqlQuery.cs" />
     <Compile Include="Ado\SqlTemplates.cs" />
     <Compile Include="Attributes\SqlParserMultipleColumnAttribute.cs" />
     <Compile Include="Attributes\SqlParserNvarcharLengthAttribute.cs" />
