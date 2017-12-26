@@ -15,6 +15,13 @@ namespace Mustava.Helpers
             return property != null && property.ToString().StartsWith(text, StringComparison.OrdinalIgnoreCase);
         }
 
-        
+        public static bool IsValidUrl(string url)
+        {
+            Uri uriResult;
+            var result = Uri.TryCreate(url, UriKind.Absolute, out uriResult)
+                         && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+            return result;
+        }
     }
 }

@@ -45,6 +45,10 @@
   <ItemGroup>
     <Compile Include="Ado\AdoHelpers.cs" />
     <Compile Include="Ado\AdoTypeMap.cs" />
+    <Compile Include="Ado\DbHelper.cs" />
+    <Compile Include="Ado\QueryGeneration\IQuery.cs" />
+    <Compile Include="Ado\QueryGeneration\Procedure.cs" />
+    <Compile Include="Ado\QueryGeneration\SqlQuery.cs" />
     <Compile Include="Ado\SqlTemplates.cs" />
     <Compile Include="Attributes\SqlParserMultipleColumnAttribute.cs" />
     <Compile Include="Attributes\SqlParserNvarcharLengthAttribute.cs" />
@@ -71,7 +75,6 @@
     <Compile Include="Helpers\Email\SmtpInfoDto.cs" />
     <Compile Include="Helpers\ExcelHelpers.cs" />
     <Compile Include="Helpers\GeneralUtils.cs" />
-    <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\PredicateBuilder.cs" />
     <Compile Include="Helpers\Randomizer.cs" />
     <Compile Include="Helpers\ReflectionHelpers.cs" />
@@ -80,9 +83,15 @@
     <Compile Include="Helpers\TypeHelpers.cs" />
     <Compile Include="Helpers\UrlUtils.cs" />
     <Compile Include="Helpers\XMLUtils.cs" />
+    <Compile Include="Logger\ConsoleLogger\DebugConsoleLogger.cs" />
+    <Compile Include="Logger\ConsoleLogger\IConsoleLogger.cs" />
+    <Compile Include="Logger\ConsoleLogger\SimpleConsoleLogger.cs" />
+    <Compile Include="Logger\FileLogger\IFileLogger.cs" />
+    <Compile Include="Logger\FileLogger\SimpleFileLogger.cs" />
+    <Compile Include="Logger\ILogger.cs" />
+    <Compile Include="Logger\LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

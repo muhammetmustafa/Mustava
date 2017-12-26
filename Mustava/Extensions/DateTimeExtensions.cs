@@ -54,5 +54,31 @@ namespace Mustava.Extensions
                 return result;
             return default(DateTime?);
         }
+
+        /// <summary>
+        /// 2017-10-12 18:08:34.3434 ===> 2017-10-12 00:00:00.0000
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static DateTime ResetHourToZero(this DateTime dateTime)
+        {
+            var tmp = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day,
+                0, 0, 0, 0);
+
+            return tmp;
+        }
+
+        /// <summary>
+        /// 2017-10-12 18:08:34.3434 ===> 2017-10-12 23:59:59.9999
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static DateTime ResetHourToMidnight(this DateTime dateTime)
+        {
+            var tmp = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day,
+                23, 59, 59, 999);
+
+            return tmp;
+        }
     }
 }
