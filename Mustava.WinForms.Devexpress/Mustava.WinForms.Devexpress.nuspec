@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <id>Mustava.WinForms.Devexpress</id>
+    <version>1.0.0.2</version>
+    <title>Mustava.WinForms.Devexpress</title>
+    <authors>mmc</authors>
+    <description>mmc</description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>false</developmentDependency>
+    <copyright>Copyright ©  2017</copyright>
+    <frameworkAssemblies />
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="E:\Yeni klasör (2)\Mustava\Mustava\Mustava.WinForms.Devexpress\bin\Debug\Mustava.WinForms.Devexpress.dll" target="lib\net45" />
+  </files>
+</package>
